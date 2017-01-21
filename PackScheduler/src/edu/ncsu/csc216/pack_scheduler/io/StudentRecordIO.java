@@ -12,6 +12,10 @@ public class StudentRecordIO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private Student processStudent(String line) {
+		return null;
+	}
 
 	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws IOException {
 		// TODO Auto-generated method stub
