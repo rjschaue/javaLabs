@@ -74,7 +74,7 @@ public class Student {
 	 * @throws IllegalArgumentException if firstName is null or empty
 	 */
 	public void setFirstName(String firstName) {
-		if (firstName.equals(null)) {
+		if (firstName == null) {
 			throw new IllegalArgumentException();
 		}
 		if (firstName.length() == 0) {
@@ -98,7 +98,7 @@ public class Student {
 	 * @throws IllegalArgumentException if lastName is null or empty
 	 */
 	public void setLastName(String lastName) {
-		if (lastName.equals(null)) {
+		if (lastName == null) {
 			throw new IllegalArgumentException();
 		}
 		if (lastName.length() == 0) {
@@ -122,7 +122,7 @@ public class Student {
 	 * @throws IllegalArguementException if id is null or empty
 	 */
 	private void setId(String id) {
-		if (id.equals(null)) {
+		if (id == null) {
 			throw new IllegalArgumentException();
 		}
 		if (id.length() == 0) {
@@ -148,7 +148,7 @@ public class Student {
 	 * comes before the first '@'
 	 */
 	public void setEmail(String email) {
-		if (email.equals(null)) {
+		if (email == null) {
 			throw new IllegalArgumentException();
 		}
 		if (email.length() == 0) {
@@ -181,7 +181,7 @@ public class Student {
 	 * @throws IllegalArgumentException if password is null or empty
 	 */
 	public void setPassword(String password) {
-		if (password.equals(null)) {
+		if (password == null) {
 			throw new IllegalArgumentException();
 		}
 		if (password.length() == 0) {
