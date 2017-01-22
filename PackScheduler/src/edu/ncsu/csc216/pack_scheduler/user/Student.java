@@ -22,6 +22,8 @@ public class Student {
 	private String password;
 	/** Student's max credits */
 	private int maxCredits;
+	/** The default max credits value */
+	public static final int MAX_CREDITS = 18;
 
 	/**
 	 * This constructor for Student allows the user to set a student's
@@ -54,7 +56,7 @@ public class Student {
 	 * @param password a Student's hashed password
 	 */
 	public Student(String firstName, String lastName, String id, String email, String password) {
-		this(firstName, lastName, id, email, password, 18);
+		this(firstName, lastName, id, email, password, MAX_CREDITS);
 	}
 
 	/**
@@ -203,7 +205,7 @@ public class Student {
 	 * @throws IllegalArgumentException if maxCredits is less than 3 or greater than 18
 	 */
 	public void setMaxCredits(int maxCredits) {
-		if (maxCredits < 3 || maxCredits > 18) {
+		if (maxCredits < 3 || maxCredits > MAX_CREDITS) {
 			throw new IllegalArgumentException();
 		}
 		this.maxCredits = maxCredits;
