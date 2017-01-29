@@ -65,12 +65,8 @@ public class StudentRecordIO {
 			String id = scan.next();
 			String email = scan.next();
 			String password = scan.next();
-			if (!scan.hasNext()) {
-				student = new Student(firstName, lastName, id, email, password);
-			} else {
-				int maxCredits = scan.nextInt();
-				student = new Student(firstName, lastName, id, email, password, maxCredits);
-			}	
+			int maxCredits = scan.nextInt();
+			student = new Student(firstName, lastName, id, email, password, maxCredits);	
 			scan.close();
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException();

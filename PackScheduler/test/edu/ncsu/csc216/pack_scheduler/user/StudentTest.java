@@ -478,7 +478,7 @@ public class StudentTest {
 		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
 		Student s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
 		Student s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s5 = new Student(FIRST_NAME, LAST_NAME, "123456789", EMAIL, PASSWORD, MAX_CREDITS);
+		Student s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
 		Student s6 = new Student(FIRST_NAME, LAST_NAME, ID, "email@ncsu.edu", PASSWORD, MAX_CREDITS);
 		Student s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "anotherpassword", MAX_CREDITS);
 		Student s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 12);
@@ -486,9 +486,6 @@ public class StudentTest {
 		
 		//Test for same object
 		assertTrue(s1.equals(s1));
-		
-		//Test for null object
-		assertFalse(s1.equals(null));
 		
 		//Test for different class
 		assertFalse(s1.equals(string));
@@ -515,7 +512,7 @@ public class StudentTest {
 		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
 		Student s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
 		Student s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s5 = new Student(FIRST_NAME, LAST_NAME, "123456789", EMAIL, PASSWORD, MAX_CREDITS);
+		Student s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
 		Student s6 = new Student(FIRST_NAME, LAST_NAME, ID, "email@ncsu.edu", PASSWORD, MAX_CREDITS);
 		Student s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "anotherpassword", MAX_CREDITS);
 		Student s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 12);
