@@ -103,6 +103,56 @@ public class StudentDirectoryTest {
 		assertEquals(FIRST_NAME, studentDirectory[0][0]);
 		assertEquals(LAST_NAME, studentDirectory[0][1]);
 		assertEquals(ID, studentDirectory[0][2]);
+		
+		// Testing for null password
+		try {
+		    sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, null, PASSWORD, MAX_CREDITS);
+		    fail();
+		} catch (IllegalArgumentException e) {
+		    assertEquals("Invalid password", e.getMessage());
+		}
+		
+		// Testing for null repeat password
+		try {
+		    sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, null, MAX_CREDITS);
+		    fail();
+		} catch (IllegalArgumentException e) {
+		    assertEquals("Invalid password", e.getMessage());
+		}
+		
+		// Testing for empty string password
+		try {
+		    sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, "", PASSWORD, MAX_CREDITS);
+		    fail();
+		} catch (IllegalArgumentException e) {
+		    assertEquals("Invalid password", e.getMessage());
+		}
+		
+		// Testing for empty string repeat password
+		try {
+		    sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, "", MAX_CREDITS);
+		    fail();
+		} catch (IllegalArgumentException e) {
+		    assertEquals("Invalid password", e.getMessage());
+		}
+		
+		// Testing for mismatched password and repeat password, both ways
+		try {
+		    sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, "pw1", PASSWORD, MAX_CREDITS);
+		    fail();
+		} catch (IllegalArgumentException e) {
+		    assertEquals("Passwords do not match", e.getMessage());
+		}
+		
+		try {
+		    sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, "pw2", MAX_CREDITS);
+		    fail();
+		} catch (IllegalArgumentException e) {
+		    assertEquals("Passwords do not match", e.getMessage());
+		}
+		
+		// Testing for matching user id
+		assertFalse(sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS));
 	}
 
 	/**
