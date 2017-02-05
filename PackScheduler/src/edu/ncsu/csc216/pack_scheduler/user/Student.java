@@ -9,7 +9,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
  *
  */
 
-public class Student {
+public class Student implements Comparable<Student> {
 	/** Student's first name */
 	private String firstName;
 	/** Student's last name */
@@ -280,5 +280,42 @@ public class Student {
 		String student = getFirstName() + "," + getLastName() + ","
 						 + getId() + "," + getEmail() + "," + getPassword() + "," + getMaxCredits();
 		return student;
+	}
+
+	/**
+	 * Compares two student objects
+	 * @throws NullPointerException if the Student is null
+	 */
+	@Override
+	public int compareTo(Student s) {
+		if (s == null) {
+			throw new NullPointerException();
+		}
+		int compare;
+		if (!lastName.equals(s.getLastName())) {
+			compare = lastName.compareToIgnoreCase(s.getLastName());
+			if (compare < 0) {
+				return -1;
+			} else if (compare > 0) {
+				return 1;
+			}
+		}
+		if (!firstName.equals(s.getFirstName())) {
+			compare = firstName.compareToIgnoreCase(s.getFirstName());
+			if (compare < 0) {
+				return -1;
+			} else if (compare > 0) {
+				return 1;
+			}
+		}
+		if (!id.equals(s.getId())) {
+			compare = id.compareToIgnoreCase(s.getId());
+			if (compare < 0) {
+				return -1;
+			} else if (compare > 0){
+				return 1;
+			}
+		}
+		return 0;
 	}
 }

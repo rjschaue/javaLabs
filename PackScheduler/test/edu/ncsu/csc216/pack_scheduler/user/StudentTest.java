@@ -545,4 +545,45 @@ public class StudentTest {
 		assertEquals(string2, student2.toString());
 	}
 
+	/**
+	 * Test compareTo
+	 */
+	@Test
+	public void testCompareTo() {
+		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		Student s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		Student s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
+		Student s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
+		Student s6 = new Student("Lorik", "Quiin", "lorikq", EMAIL, PASSWORD, MAX_CREDITS);
+		
+		//Testing a null object
+		Student nullStudent = null;
+		try {
+			s1.compareTo(nullStudent);
+			fail();
+		} catch (NullPointerException e) {
+			assertNull(nullStudent);
+		}
+		
+		//Testing two of the same student
+		assertEquals(0, s1.compareTo(s2));
+		assertEquals(0, s2.compareTo(s1));
+		
+		//Testing students with varying last names
+		assertEquals(1, s1.compareTo(s4));
+		assertEquals(-1, s4.compareTo(s1));
+		
+		//Testing students with varying first names
+		assertEquals(1, s1.compareTo(s3));
+		assertEquals(-1, s3.compareTo(s1));
+		
+		//Testing students with varying id values
+		assertEquals(-1, s1.compareTo(s5));
+		assertEquals(1, s5.compareTo(s1));
+		
+		//Testing students with different last name, first name and id
+		assertEquals(1, s1.compareTo(s6));
+		assertEquals(-1, s6.compareTo(s1));
+	}
 }
