@@ -7,12 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -45,8 +45,8 @@ public class StudentRecordIOTest {
 	private final String validStudent10 = "Dylan,Nolan,dnolan,placerat.Cras.dictum@dictum.net,pw,5";
 
 	/** Array to hold expected results */
-	private final String[] validStudents = {validStudent1, validStudent2, validStudent3, validStudent4, validStudent5, validStudent6,
-											validStudent7, validStudent8, validStudent9, validStudent10};
+	private final String[] validStudents = {validStudent4, validStudent7, validStudent5, validStudent6, validStudent3, validStudent9,
+											validStudent1, validStudent10, validStudent2, validStudent8};
 	
 	/**
 	 * Hash the password for each validStudent in the String array
@@ -75,7 +75,7 @@ public class StudentRecordIOTest {
 	public void testReadStudentRecords() {		
 		//Test a valid student records file
 		try {
-			ArrayList<Student> students;
+			SortedList<Student> students;
 			students = StudentRecordIO.readStudentRecords(validTestFile);
 			assertEquals(10, students.size());
 			
@@ -88,7 +88,7 @@ public class StudentRecordIOTest {
 		
 		//Test an invalid student records file
 		try {
-			ArrayList<Student> students;
+			SortedList<Student> students;
 			students = StudentRecordIO.readStudentRecords(invalidTestFile);
 			assertEquals(0, students.size());
 		} catch (FileNotFoundException e) {
@@ -101,7 +101,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testWriteStudentRecords() {
-		ArrayList<Student> students = new ArrayList<Student>();
+		SortedList<Student> students = new SortedList<Student>();
 	    students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
 	    
 	    try {
@@ -118,7 +118,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testWriteStudentRecordsNoPermissions() {
-	    ArrayList<Student> students = new ArrayList<Student>();
+	    SortedList<Student> students = new SortedList<Student>();
 	    students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
 	    
 	    try {

@@ -5,10 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -25,9 +25,9 @@ public class StudentRecordIO {
 	 * @return the processed file as an ArrayList
 	 * @throws FileNotFoundException if the file isn't found
 	 */
-	public static ArrayList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
+	public static SortedList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
-	    ArrayList<Student> students = new ArrayList<Student>();
+	    SortedList<Student> students = new SortedList<Student>();
 	    while (fileReader.hasNextLine()) {
 	        try {
 	            Student student = processStudent(fileReader.nextLine());
@@ -80,7 +80,7 @@ public class StudentRecordIO {
 	 * @param studentDirectory the studentDirectory to be written to the file
 	 * @throws IOException if there is an input or output exception
 	 */
-	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws IOException {
+	public static void writeStudentRecords(String fileName, SortedList<Student> studentDirectory) throws IOException {
 		PrintStream fileWriter = new PrintStream(new File(fileName));
 
 		for (int i = 0; i < studentDirectory.size(); i++) {
