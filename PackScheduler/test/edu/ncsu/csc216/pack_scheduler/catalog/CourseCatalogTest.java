@@ -123,6 +123,12 @@ public class CourseCatalogTest {
 		//Tests adding an existing course to the catalog
 		assertFalse(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 		
+		//Tests adding an invalid course to the catalog
+		try {
+			catalog.addCourseToCatalog(null, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		} catch (IllegalArgumentException e) {
+			assertEquals(null, e.getMessage());
+		}
 	}
 	
 	/**

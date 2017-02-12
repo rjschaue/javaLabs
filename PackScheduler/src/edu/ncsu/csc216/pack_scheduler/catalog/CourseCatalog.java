@@ -67,7 +67,8 @@ public class CourseCatalog {
 			throw new IllegalArgumentException(e.getMessage());
 		}
 		try {
-			return catalog.add(course);
+			boolean add = catalog.add(course);
+			return add;
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
