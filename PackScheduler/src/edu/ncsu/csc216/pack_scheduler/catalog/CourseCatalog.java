@@ -63,10 +63,13 @@ public class CourseCatalog {
 		Course course;
 		try {
 			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);		
-			return catalog.add(course);
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());
+		}		
+		if (!catalog.contains(course)) {
+			return catalog.add(course);
 		}
+		return false;
 	}
 	
 	/**
