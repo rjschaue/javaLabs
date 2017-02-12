@@ -22,7 +22,7 @@ public class StudentRecordIO {
 	/**
 	 * Reads the student records from a given file
 	 * @param fileName the name of the file to be processed
-	 * @return the processed file as an ArrayList
+	 * @return the processed file as a SortedList
 	 * @throws FileNotFoundException if the file isn't found
 	 */
 	public static SortedList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
@@ -75,7 +75,7 @@ public class StudentRecordIO {
 	}
 
 	/**
-	 * Writes a given ArrayList of student to a new file
+	 * Writes a given SortedList of student to a new file
 	 * @param fileName the name of the file to be written
 	 * @param studentDirectory the studentDirectory to be written to the file
 	 * @throws IOException if there is an input or output exception

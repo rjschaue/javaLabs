@@ -88,7 +88,7 @@ public class CourseRecordIO {
 	/**
 	 * Writes the given list of Courses to a new file 
 	 * @param fileName the file name for the new file
-	 * @param courses the ArrayList of courses to be added to the new file
+	 * @param courses the SortedList of courses to be added to the new file
 	 * @throws IOException throws IOException for the method
 	 */
 	public static void writeCourseRecords(String fileName, SortedList<Course> courses) throws IOException {
