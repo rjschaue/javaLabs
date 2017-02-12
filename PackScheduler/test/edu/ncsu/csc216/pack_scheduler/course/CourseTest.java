@@ -698,6 +698,73 @@ public class CourseTest {
 	}
 
 	/**
+	 * Tests the getShortDisplayArray method
+	 */
+	@Test
+	public void testGetShortDisplayArray() {
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		
+		//Creates a string array to compare against the short display array
+		String[] s = new String[4];
+		s[0] = NAME;
+		s[1] = SECTION;
+		s[2] = TITLE;
+		s[3] = course.getMeetingString();
+		
+		//Gets the short display array then compares it's values against the other array
+		String[] array = course.getShortDisplayArray();		
+		assertEquals(s[0], array[0]);
+		assertEquals(s[1], array[1]);
+		assertEquals(s[2], array[2]);
+		assertEquals(s[3], array[3]);
+	}
+	
+	/**
+	 * Tests the getLongDisplayArray method
+	 */
+	@Test
+	public void testGetLongDisplayArray() {
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		
+		//Creates a string array to compare against the long display array
+		String[] s = new String[7];
+		s[0] = NAME;
+		s[1] = SECTION;
+		s[2] = TITLE;
+		s[3] = "" + CREDITS;
+		s[4] = INSTRUCTOR_ID;
+		s[5] = course.getMeetingString();
+		s[6] = "";
+		
+		//Gets the long display array then compares it's values against the other array
+		String[] array = course.getLongDisplayArray();		
+		assertEquals(s[0], array[0]);
+		assertEquals(s[1], array[1]);
+		assertEquals(s[2], array[2]);
+		assertEquals(s[3], array[3]);
+		assertEquals(s[4], array[4]);
+		assertEquals(s[5], array[5]);
+		assertEquals(s[6], array[6]);
+	}
+	
+	/**
+	 * Tests the isDuplicate method
+	 */
+	@Test
+	public void testIsDuplicate() {
+		Activity course1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Activity course2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Activity course3 = new Course(NAME, "Not Your Average Class", SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		
+		//Checking two courses that are duplicates both ways
+		assertTrue(course1.isDuplicate(course2));
+		assertTrue(course2.isDuplicate(course1));
+		
+		//Checking two courses that are not duplicates
+		assertFalse(course3.isDuplicate(course1));
+	}
+	
+	/**
 	 * Tests the compareTo method
 	 */
 	@Test
