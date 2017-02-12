@@ -58,7 +58,7 @@ public class CourseCatalog {
 	 * @return if the course was added (true) or not (false)
 	 * @throws IllegalArgumentException If something goes wrong with creating the Course
 	 */
-	public boolean addCoursesToCatalog(String name, String title, String section, int credits, 
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, 
 									   String instructorId, String meetingDays, int startTime, int endTime) {
 		Course course;
 		try {

@@ -76,7 +76,7 @@ public class CourseCatalogTest {
 		CourseCatalog catalog = new CourseCatalog();
 		
 		//Adds courses to the catalog
-		catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		
 		//Tests to see if newCourseCatalog clears out any existing courses
@@ -108,7 +108,7 @@ public class CourseCatalogTest {
 	}
 	
 	/**
-	 * Tests the addCoursesToCatalog method
+	 * Tests the addCourseToCatalog method
 	 */
 	@Test
 	public void testAddCoursesToCatalog() {
@@ -116,13 +116,13 @@ public class CourseCatalogTest {
 		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Tests adding a new course to the catalog
-		catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
 		
 		//Tests adding an existing course to the catalog
 		try {
-			catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+			catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		} catch (IllegalArgumentException e) {
 			assertEquals("Element already in list.", e.getMessage());
 		}
@@ -137,7 +137,7 @@ public class CourseCatalogTest {
 		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Adds a course to the catalog to ensure there is at least one
-		catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
 		
@@ -157,7 +157,7 @@ public class CourseCatalogTest {
 	public void testGetCourseFromCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
 		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Tests getting a course from the catalog that exists
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
@@ -176,7 +176,7 @@ public class CourseCatalogTest {
 	public void testGetCourseCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
 		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Gets the course catalog string array 
 		String[][] catalogString = catalog.getCourseCatalog();
@@ -201,7 +201,7 @@ public class CourseCatalogTest {
 	@Test
 	public void testSaveCourseCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
-		catalog.addCoursesToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		
 		//tests saving the catalog to a file then checking it against expected outcomes
