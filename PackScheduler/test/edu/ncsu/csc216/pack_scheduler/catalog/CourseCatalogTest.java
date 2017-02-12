@@ -116,16 +116,13 @@ public class CourseCatalogTest {
 		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Tests adding a new course to the catalog
-		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		assertTrue(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 		assertEquals(1, catalog.getCourseCatalog().length);
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
 		
 		//Tests adding an existing course to the catalog
-		try {
-			catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		} catch (IllegalArgumentException e) {
-			assertEquals("Element already in list.", e.getMessage());
-		}
+		assertFalse(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		
 	}
 	
 	/**

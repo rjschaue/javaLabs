@@ -62,17 +62,11 @@ public class CourseCatalog {
 									   String instructorId, String meetingDays, int startTime, int endTime) {
 		Course course;
 		try {
-			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);		
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(e.getMessage());
-		}
-		boolean add;
-		try {
-			add = catalog.contains(course);
+			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+			return catalog.add(course);
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
-		return add;
 	}
 	
 	/**
