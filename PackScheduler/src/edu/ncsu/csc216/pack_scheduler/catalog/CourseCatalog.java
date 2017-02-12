@@ -65,11 +65,14 @@ public class CourseCatalog {
 			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);		
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());
-		}		
-		if (!catalog.contains(course)) {
-			return catalog.add(course);
 		}
-		return false;
+		boolean add;
+		try {
+			add = catalog.contains(course);
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+		return add;
 	}
 	
 	/**
