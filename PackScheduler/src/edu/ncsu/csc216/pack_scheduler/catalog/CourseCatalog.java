@@ -66,12 +66,13 @@ public class CourseCatalog {
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}
-		try {
-			boolean add = catalog.add(course);
-			return add;
-		} catch (IllegalArgumentException e) {
-			return false;
+		for (int i = 0; i < catalog.size(); i++) {
+			Course test = catalog.get(i);
+			if (test.compareTo(course) == 0) {
+				return false;
+			}
 		}
+		return catalog.add(course);
 	}
 	
 	/**

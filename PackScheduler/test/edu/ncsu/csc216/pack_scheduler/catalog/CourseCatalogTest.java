@@ -123,6 +123,9 @@ public class CourseCatalogTest {
 		//Tests adding an existing course to the catalog
 		assertFalse(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 		
+		//Test adding a course with the same name and section only
+		assertFalse(catalog.addCourseToCatalog(NAME, "Something", SECTION, 3, "teacher", "MW", 800, 900));
+		
 		//Tests adding an invalid course to the catalog
 		try {
 			catalog.addCourseToCatalog(null, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
