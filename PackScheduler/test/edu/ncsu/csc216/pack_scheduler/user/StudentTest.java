@@ -474,14 +474,14 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsObject() {
-		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
-		Student s6 = new Student(FIRST_NAME, LAST_NAME, ID, "email@ncsu.edu", PASSWORD, MAX_CREDITS);
-		Student s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "anotherpassword", MAX_CREDITS);
-		Student s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 12);
+		User s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
+		User s6 = new Student(FIRST_NAME, LAST_NAME, ID, "email@ncsu.edu", PASSWORD, MAX_CREDITS);
+		User s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "anotherpassword", MAX_CREDITS);
+		User s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 12);
 		String string = "Test";
 		
 		//Test for same object
@@ -508,14 +508,14 @@ public class StudentTest {
 	 */
 	@Test
 	public void testHashCode() {
-		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
-		Student s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
-		Student s6 = new Student(FIRST_NAME, LAST_NAME, ID, "email@ncsu.edu", PASSWORD, MAX_CREDITS);
-		Student s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "anotherpassword", MAX_CREDITS);
-		Student s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 12);
+		User s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s3 = new Student("Bob", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s4 = new Student(FIRST_NAME, "Hildebrand", ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User s5 = new Student(FIRST_NAME, LAST_NAME, "schauerj", EMAIL, PASSWORD, MAX_CREDITS);
+		User s6 = new Student(FIRST_NAME, LAST_NAME, ID, "email@ncsu.edu", PASSWORD, MAX_CREDITS);
+		User s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "anotherpassword", MAX_CREDITS);
+		User s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 12);
 		
 		//Test for the same hash code for the same values
 		assertEquals(s1.hashCode(), s2.hashCode());
@@ -535,12 +535,12 @@ public class StudentTest {
 	@Test
 	public void testToString() {
 		//Test toString with full constructor
-		Student student1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		User student1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
 		String string1 = "Joey,Schauer,rjschaue,rjschaue@ncsu.edu,password,9";
 		assertEquals(string1, student1.toString());
 		
 		//Test toString with constructor lacking maxCredits
-		Student student2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD);
+		User student2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD);
 		String string2 = "Joey,Schauer,rjschaue,rjschaue@ncsu.edu,password,18";
 		assertEquals(string2, student2.toString());
 	}
