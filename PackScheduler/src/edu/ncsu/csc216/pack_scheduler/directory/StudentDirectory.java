@@ -89,8 +89,6 @@ public class StudentDirectory {
 		}
 		
 		Student student;
-		//If an IllegalArgumentException is thrown, it's passed up from Student
-		//to the GUI
 		try {
 			student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
 		} catch (IllegalArgumentException e) {
@@ -98,7 +96,7 @@ public class StudentDirectory {
 		}
 		
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			User s = studentDirectory.get(i);
+			Student s = studentDirectory.get(i);
 			if (s.getId().equals(student.getId())) {
 				return false;
 			}
@@ -130,7 +128,7 @@ public class StudentDirectory {
 	public String[][] getStudentDirectory() {
 		String [][] directory = new String[studentDirectory.size()][3];
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			User s = studentDirectory.get(i);
+			Student s = studentDirectory.get(i);
 			directory[i][0] = s.getFirstName();
 			directory[i][1] = s.getLastName();
 			directory[i][2] = s.getId();

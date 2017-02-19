@@ -81,6 +81,8 @@ public class CourseRecordIO {
 			scan.close();
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException();
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException();
 		}
 		return course;
 	}
