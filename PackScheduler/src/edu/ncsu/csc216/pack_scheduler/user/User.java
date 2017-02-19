@@ -1,5 +1,9 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+/**
+ * This abstract class holds methods and fields used by all users
+ * @author Joey Schauer
+ */
 public abstract class User {
 
 	/** Student's first name */
@@ -13,6 +17,14 @@ public abstract class User {
 	/** Student's password */
 	private String password;
 
+	/**
+	 * Constructor for User
+	 * @param firstName the first name of the user
+	 * @param lastName the last name of the user
+	 * @param id the id of the user
+	 * @param email the email of the user
+	 * @param password the password of the user
+	 */
 	public User(String firstName, String lastName, String id, String email, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);

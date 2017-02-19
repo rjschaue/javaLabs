@@ -12,6 +12,8 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 /**
  * Tests StudentDirectory.
  * @author Sarah Heckman
@@ -185,6 +187,23 @@ public class StudentDirectoryTest {
 		assertEquals(1, sd.getStudentDirectory().length);
 		sd.saveStudentDirectory("test-files/actual_student_records.txt");
 		checkFiles("test-files/expected_student_records.txt", "test-files/actual_student_records.txt");
+	}
+	
+	@Test
+	public void testGetStudentById() {
+		StudentDirectory sd = new StudentDirectory();
+		Student s1 = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", 15);
+		
+		//Add a student
+		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		assertEquals(1, sd.getStudentDirectory().length);
+		//Test getting a student not in the directory
+		Student s3 = sd.getStudentById("rjschaue");
+		assertEquals(null, s3);
+		//Test getting the student by their id		
+		Student s2 = sd.getStudentById("zking");
+		assertEquals(s1, s2);
+		
 	}
 	
 	/**

@@ -52,10 +52,10 @@ abstract public class Activity implements Conflict {
 	 */
 	public void setTitle(String title) {
 		if (title == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid title");
 		}
 		if (title.length() == 0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid title");
 		}
 		this.title = title;
 	}
@@ -104,20 +104,13 @@ abstract public class Activity implements Conflict {
 	 * or if startTime/endTime doesn't equal 0 when meetingDays is "A"
 	 */
 	public void setActivityTime(int startTime, int endTime) {
-		if (startTime < 0 || startTime >= UPPER_TIME || startTime % 100 >= UPPER_HOUR) {
-			throw new IllegalArgumentException();
-		}
-		if (endTime < 0 || endTime >= UPPER_TIME || endTime % 100 >= UPPER_HOUR) {
-			throw new IllegalArgumentException();
-		}
-		if (endTime < startTime) {
-			throw new IllegalArgumentException();
-		}
-		if (meetingDays.equals("A") && startTime != 0) {
-			throw new IllegalArgumentException();
-		}
-		if (meetingDays.equals("A") && endTime != 0) {
-			throw new IllegalArgumentException();
+		if (meetingDays.equals("A")) {
+		} else if (startTime < 0 || startTime >= UPPER_TIME || startTime % 100 >= UPPER_HOUR) {
+			throw new IllegalArgumentException("Invalid meeting times");
+		} else if (endTime < 0 || endTime >= UPPER_TIME || endTime % 100 >= UPPER_HOUR) {
+			throw new IllegalArgumentException("Invalid meeting times");
+		} else if (endTime < startTime) {
+			throw new IllegalArgumentException("Invalid meeting times");
 		}
 		this.startTime = startTime;
 		this.endTime = endTime;
