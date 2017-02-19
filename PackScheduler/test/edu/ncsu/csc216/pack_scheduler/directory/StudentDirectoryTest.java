@@ -205,8 +205,12 @@ public class StudentDirectoryTest {
 		assertEquals(null, s3);
 		//Test getting the student by their id		
 		Student s2 = sd.getStudentById("zking");
-		assertEquals(s1, s2);
-		
+		assertEquals(s1.getFirstName(), s2.getFirstName());
+		assertEquals(s1.getLastName(), s2.getLastName());
+		assertEquals(s1.getId(), s2.getId());
+		assertEquals(s1.getEmail(), s2.getEmail());
+		assertEquals(s1.getPassword(), s2.getPassword());
+		assertEquals(s1.getMaxCredits(), s2.getMaxCredits());
 	}
 	
 	/**
