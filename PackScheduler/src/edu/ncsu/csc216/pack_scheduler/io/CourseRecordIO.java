@@ -71,15 +71,13 @@ public class CourseRecordIO {
 			int credits = scan.nextInt();
 			String instructorId = scan.next();
 			String meetingDays = scan.next();
-			if (!scan.hasNext()) {
-				course = new Course(name, title, section, credits, instructorId, meetingDays);
-			} else {
-				int startTime = scan.nextInt();
-				int endTime = scan.nextInt();
-				course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
-			}	
+			int startTime = scan.nextInt();
+			int endTime = scan.nextInt();
+			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
 			scan.close();
 		} catch (NoSuchElementException e) {
+			throw new IllegalArgumentException();
+		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException();
 		}
 		return course;

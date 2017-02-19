@@ -88,9 +88,14 @@ public class StudentDirectory {
 			throw new IllegalArgumentException("Passwords do not match");
 		}
 		
-		//If an IllegalArgumentException is throw, it's passed up from Student
+		Student student;
+		//If an IllegalArgumentException is thrown, it's passed up from Student
 		//to the GUI
-		Student student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
+		try {
+			student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException();
+		}
 		
 		for (int i = 0; i < studentDirectory.size(); i++) {
 			User s = studentDirectory.get(i);

@@ -71,6 +71,8 @@ public class StudentRecordIO {
 			scan.close();
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException();
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException();
 		}
 		return student;
 	}
