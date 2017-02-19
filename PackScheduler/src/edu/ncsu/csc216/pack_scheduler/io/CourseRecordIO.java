@@ -61,7 +61,7 @@ public class CourseRecordIO {
 	 * @throws IllegalArgumentException if there is a NoSuchElementException
 	 */
 	private static Course readCourse(String nextLine) {
-		Course course;
+		Course course = null;
 		try {
 			Scanner scan = new Scanner(nextLine);	
 			scan.useDelimiter(",");
@@ -74,9 +74,17 @@ public class CourseRecordIO {
 			if (!scan.hasNext() && meetingDays.equals("A")) {
 				course = new Course(name, title, section, credits, instructorId, meetingDays);
 			} else {
-				int startTime = scan.nextInt();
-				int endTime = scan.nextInt();
-				course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+				boolean hasA = false;
+				for (int i = 0; i < meetingDays.length(); i++) {
+					if (meetingDays.charAt(i) == 'A') {
+						hasA = true;
+					}
+				}
+				if (!hasA) {
+					int startTime = scan.nextInt();
+					int endTime = scan.nextInt();
+					course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+				}			
 			}	
 			scan.close();
 		} catch (NoSuchElementException e) {
