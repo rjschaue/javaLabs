@@ -145,6 +145,11 @@ public class StudentDirectory {
 		}
 	}
 
+	/**
+	 * Gets a given student based on their id
+	 * @param id the student to be returned
+	 * @return the student with the given id or null if they don't exist
+	 */
 	public Student getStudentById(String id) {
 		for (int i = 0; i < studentDirectory.size(); i++) {
 			Student s = studentDirectory.get(i);

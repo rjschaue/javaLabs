@@ -189,6 +189,9 @@ public class StudentDirectoryTest {
 		checkFiles("test-files/expected_student_records.txt", "test-files/actual_student_records.txt");
 	}
 	
+	/**
+	 * Tests the get student by id method
+	 */
 	@Test
 	public void testGetStudentById() {
 		StudentDirectory sd = new StudentDirectory();

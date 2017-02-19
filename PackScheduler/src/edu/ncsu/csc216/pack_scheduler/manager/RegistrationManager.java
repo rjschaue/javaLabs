@@ -8,12 +8,21 @@ import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
+/**
+ * Manages the login of users and registrar functionality for PackScheduler
+ * @author Joey Schauer
+ *
+ */
 public class RegistrationManager {
-	
+	/** the instance of the registration manager */
 	private static RegistrationManager instance;
+	/** gets the course catalog */
 	private CourseCatalog courseCatalog;
+	/** gets the student directory */
 	private StudentDirectory studentDirectory;
+	/** gets the registrar information */
 	private User registrar;
+	/** gets the current user of the scheduler */
 	private User currentUser;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
@@ -31,6 +40,9 @@ public class RegistrationManager {
 		}
 	}
 	
+	/**
+	 * Constructor for RegistrationManager
+	 */
 	private RegistrationManager() {
 		courseCatalog = new CourseCatalog();
 		studentDirectory = new StudentDirectory();
@@ -38,6 +50,10 @@ public class RegistrationManager {
 		currentUser = null;
 	}
 	
+	/**
+	 * Gets the instance of RegistrationManager
+	 * @return the instance of RegistrationManager
+	 */
 	public static RegistrationManager getInstance() {
 		  if (instance == null) {
 			instance = new RegistrationManager();
@@ -45,14 +61,28 @@ public class RegistrationManager {
 		return instance;
 	}
 	
+	/**
+	 * Returns the course catalog
+	 * @return the course catalog
+	 */
 	public CourseCatalog getCourseCatalog() {
 		return courseCatalog;
 	}
 	
+	/**
+	 * Returns the student directory
+	 * @return the student directory
+	 */
 	public StudentDirectory getStudentDirectory() {
 		return studentDirectory;
 	}
 
+	/**
+	 * Processes the login of a given user
+	 * @param id the id of the user to log in
+	 * @param password the password of the user to log in
+	 * @return if the user was logged in (true) or not (false)
+	 */
 	public boolean login(String id, String password) {
 		if (currentUser != null) {
 			return false;
@@ -92,28 +122,43 @@ public class RegistrationManager {
 		return false;
 	}
 
+	/**
+	 * Logs out a user, setting the current user to null
+	 */
 	public void logout() {
 		currentUser = null; 
 	}
 	
 	/**
-	 * @return 
+	 * Returns the current user
+	 * @return the current user
 	 */
 	public User getCurrentUser() {
 		return currentUser;
 	}
 	
+	/**
+	 * Clears out any data from the RegistrationManager
+	 */
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
 	}
-	
+
+	/**
+	 * This class is used to store values for the registrar
+	 * @author Joey Schauer
+	 */
 	private static class Registrar extends User {
 		
-		  private static final String FIRST_NAME = "Wolf";
-		  private static final String LAST_NAME = "Scheduler";
-		 private static final String ID = "registrar";
-		 	private static final String EMAIL = "registrar@ncsu.edu";
+		/** the first name of the registrar */
+		private static final String FIRST_NAME = "Wolf";
+		/** the last name of the registrar */
+		private static final String LAST_NAME = "Scheduler";
+		/** the id of the registrar */
+		private static final String ID = "registrar";
+		/** the email of the registrar */
+		private static final String EMAIL = "registrar@ncsu.edu";
 		
 		/**
 		 * Create a registrar user with the user id of registrar and

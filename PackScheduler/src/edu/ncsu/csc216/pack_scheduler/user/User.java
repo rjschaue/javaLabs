@@ -93,7 +93,7 @@ public abstract class User {
 	 * Sets the Student's id
 	 * If id is null or empty, an IllegalArgumentException is thrown
 	 * @param id is the given id to be set
-	 * @throws IllegalArguementException if id is null or empty
+	 * @throws IllegalArgumentException if id is null or empty
 	 */
 	protected void setId(String id) {
 		if (id == null) {
