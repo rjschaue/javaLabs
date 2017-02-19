@@ -194,23 +194,20 @@ public class StudentDirectoryTest {
 	 */
 	@Test
 	public void testGetStudentById() {
-		StudentDirectory sd = new StudentDirectory();
-		Student s1 = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", 15);
+		StudentDirectory sd1 = new StudentDirectory();
+		StudentDirectory sd2 = new StudentDirectory();
+		sd2.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		Student s1 = sd2.getStudentById("zking");
 		
 		//Add a student
-		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
-		assertEquals(1, sd.getStudentDirectory().length);
+		sd1.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		assertEquals(1, sd1.getStudentDirectory().length);
 		//Test getting a student not in the directory
-		Student s3 = sd.getStudentById("rjschaue");
+		Student s3 = sd1.getStudentById("rjschaue");
 		assertEquals(null, s3);
 		//Test getting the student by their id		
-		Student s2 = sd.getStudentById("zking");
-		assertEquals(s1.getFirstName(), s2.getFirstName());
-		assertEquals(s1.getLastName(), s2.getLastName());
-		assertEquals(s1.getId(), s2.getId());
-		assertEquals(s1.getEmail(), s2.getEmail());
-		assertEquals(s1.getPassword(), s2.getPassword());
-		assertEquals(s1.getMaxCredits(), s2.getMaxCredits());
+		Student s2 = sd1.getStudentById("zking");
+		assertEquals(s1, s2);
 	}
 	
 	/**
