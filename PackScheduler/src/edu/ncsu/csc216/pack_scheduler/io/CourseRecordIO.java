@@ -84,14 +84,15 @@ public class CourseRecordIO {
 					int startTime = scan.nextInt();
 					int endTime = scan.nextInt();
 					course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
-				}			
+				} else {
+					scan.close();
+					throw new IllegalArgumentException();				
+				}
 			}	
 			scan.close();
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException();
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException();
-		}
+		} 
 		return course;
 	}
 
