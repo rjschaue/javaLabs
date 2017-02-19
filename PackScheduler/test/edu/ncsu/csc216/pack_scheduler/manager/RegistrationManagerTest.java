@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+
 /**
  * Tests the RegistrationManager class
  * @author Joey Schauer
@@ -29,7 +32,10 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testGetCourseCatalog() {
-		fail("Not yet implemented");
+		//Testing to see if two new catalogs both lack the same course
+		CourseCatalog catalog1 = manager.getCourseCatalog();
+		CourseCatalog catalog2 = new CourseCatalog();
+		assertEquals(catalog1.getCourseFromCatalog("CSC116", "001"), catalog2.getCourseFromCatalog("CSC116", "001"));
 	}
 
 	/**
@@ -37,7 +43,10 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testGetStudentDirectory() {
-		fail("Not yet implemented");
+		//Testing to see if two new directorys lack the same user
+		StudentDirectory directory1 = manager.getStudentDirectory();
+		StudentDirectory directory2 = new StudentDirectory();
+		assertEquals(directory1.getStudentById("rjschaue"), directory2.getStudentById("rjschaue"));
 	}
 
 	/**
@@ -45,7 +54,9 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testLogin() {
-		fail("Not yet implemented");
+		//try logging in as a valid user
+		manager.login("registrar", "Regi5tr@r");
+		assertEquals(manager.getCurrentUser().getId(), "registrar");
 	}
 
 	/**
@@ -53,7 +64,12 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testLogout() {
-		fail("Not yet implemented");
+		//logging a user in
+		manager.login("registrar", "Regi5tr@r");
+		assertEquals(manager.getCurrentUser().getId(), "registrar");
+		//logging the user out
+		manager.logout();
+		assertEquals(manager.getCurrentUser(), null);
 	}
 
 	/**
@@ -61,7 +77,11 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testGetCurrentUser() {
-		fail("Not yet implemented");
+		//testing to see if user is null when constructed
+		assertEquals(manager.getCurrentUser(), null);
+		//testing to see if the user is changed when someone is logged in
+		manager.login("registrar", "Regi5tr@r");
+		assertEquals(manager.getCurrentUser().getId(), "registrar");
 	}
 
 }
