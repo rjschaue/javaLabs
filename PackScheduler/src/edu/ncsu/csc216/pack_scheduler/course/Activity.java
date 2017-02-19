@@ -101,19 +101,21 @@ abstract public class Activity implements Conflict {
 	 * @param endTime the Activity's end time
 	 * @throws IllegalArgumentException if startTime/endTime is less than 0, startTime/endTime
 	 * is greater than 2359, startTime/endTime modulo 100 is greater than 59, endTime is less than startTime
-	 * or if startTime/endTime doesn't equal 0 when meetingDays is "A"
 	 */
 	public void setActivityTime(int startTime, int endTime) {
 		if (meetingDays.equals("A")) {
+			this.startTime = 0;
+			this.endTime = 0;
 		} else if (startTime < 0 || startTime >= UPPER_TIME || startTime % 100 >= UPPER_HOUR) {
 			throw new IllegalArgumentException("Invalid meeting times");
 		} else if (endTime < 0 || endTime >= UPPER_TIME || endTime % 100 >= UPPER_HOUR) {
 			throw new IllegalArgumentException("Invalid meeting times");
 		} else if (endTime < startTime) {
 			throw new IllegalArgumentException("Invalid meeting times");
-		}
-		this.startTime = startTime;
-		this.endTime = endTime;
+		} else {
+			this.startTime = startTime;
+			this.endTime = endTime;
+		}		
 	}
 
 	/**
