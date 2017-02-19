@@ -71,7 +71,7 @@ public class CourseRecordIO {
 			int credits = scan.nextInt();
 			String instructorId = scan.next();
 			String meetingDays = scan.next();
-			if (!scan.hasNext()) {
+			if (!scan.hasNext() && meetingDays.equals("A")) {
 				course = new Course(name, title, section, credits, instructorId, meetingDays);
 			} else {
 				int startTime = scan.nextInt();
