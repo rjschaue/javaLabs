@@ -130,7 +130,7 @@ public class CourseCatalogTest {
 		try {
 			catalog.addCourseToCatalog(null, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		} catch (IllegalArgumentException e) {
-			assertEquals(null, e.getMessage());
+			assertEquals("Invalid name", e.getMessage());
 		}
 	}
 	
