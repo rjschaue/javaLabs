@@ -146,6 +146,14 @@ public class RegistrationManager {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
 	}
+		
+	/**
+	 * Setter for studentDirectory to help with testing
+	 * @param studentDirectory the studentDirectory to be added
+	 */
+	public void setStudentDirectory(StudentDirectory studentDirectory) {
+		this.studentDirectory = studentDirectory;
+	}
 
 	/**
 	 * This class is used to store values for the registrar

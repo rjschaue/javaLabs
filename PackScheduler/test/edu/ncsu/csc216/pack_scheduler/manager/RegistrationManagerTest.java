@@ -53,7 +53,12 @@ public class RegistrationManagerTest {
 	 * Tests the login method
 	 */
 	@Test
-	public void testLogin() {		
+	public void testLogin() {	
+		//Set student directory for manager
+		StudentDirectory sd = new StudentDirectory();
+		sd.addStudent("Joey", "Schauer", "rjschaue", "rjschaue@ncsu.edu", "pw", "pw", 9);
+		manager.setStudentDirectory(sd);
+		
 		//try logging in as a valid user
 		manager.login("registrar", "Regi5tr@r");
 		assertEquals(manager.getCurrentUser().getId(), "registrar");
@@ -61,14 +66,10 @@ public class RegistrationManagerTest {
 		//Try logging in when someone already is
 		assertFalse(manager.login("rjschaue", "pw"));
 		
+		//Try logging in a valid student
 		manager.logout();
-		//Try logging in as an invalid user
-		try {
-			manager.login("rjschaue", "pw");
-			fail("Should not reach this");
-		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Invalid id or password");
-		}
+		System.out.println(manager.login("rjschaue", "pw"));
+		assertEquals(manager.getCurrentUser().getId(), "rjschaue");
 	}
 
 	/**
@@ -78,7 +79,6 @@ public class RegistrationManagerTest {
 	public void testLogout() {
 		//logging a user in
 		manager.login("registrar", "Regi5tr@r");
-		assertEquals(manager.getCurrentUser().getId(), "registrar");
 		//logging the user out
 		manager.logout();
 		assertEquals(manager.getCurrentUser(), null);
