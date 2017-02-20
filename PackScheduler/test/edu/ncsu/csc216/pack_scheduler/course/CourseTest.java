@@ -248,6 +248,21 @@ public class CourseTest {
 			assertEquals(END_TIME, c.getEndTime());
 		}
 		
+		//Test that setting the section to "abc" doesn't change the section (or anything else).
+		try {
+			c.setSection("abc");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(NAME, c.getName());
+			assertEquals(TITLE, c.getTitle());
+			assertEquals(SECTION, c.getSection());
+			assertEquals(CREDITS, c.getCredits());
+			assertEquals(INSTRUCTOR_ID, c.getInstructorId());
+			assertEquals(MEETING_DAYS, c.getMeetingDays());
+			assertEquals(START_TIME, c.getStartTime());
+			assertEquals(END_TIME, c.getEndTime());
+		}
+		
 		//Test valid section
 		c.setSection("002");
 		assertEquals(NAME, c.getName());

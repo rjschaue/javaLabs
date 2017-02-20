@@ -20,7 +20,7 @@ public class RegistrationManager {
 	private CourseCatalog courseCatalog;
 	/** gets the student directory */
 	private StudentDirectory studentDirectory;
-	/** gets the registrar information */
+	/** gets the registrar's information */
 	private User registrar;
 	/** gets the current user of the scheduler */
 	private User currentUser;
@@ -97,6 +97,8 @@ public class RegistrationManager {
 			if (registrar.getPassword().equals(localHashPW)) {
 				currentUser = registrar;
 				return true;
+			} else {
+				throw new IllegalArgumentException("Invalid id or password");
 			}
 			} catch (NoSuchAlgorithmException e) {
 				throw new IllegalArgumentException("Invalid id or password");

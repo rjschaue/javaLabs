@@ -53,10 +53,22 @@ public class RegistrationManagerTest {
 	 * Tests the login method
 	 */
 	@Test
-	public void testLogin() {
+	public void testLogin() {		
 		//try logging in as a valid user
 		manager.login("registrar", "Regi5tr@r");
 		assertEquals(manager.getCurrentUser().getId(), "registrar");
+		
+		//Try logging in when someone already is
+		assertFalse(manager.login("rjschaue", "pw"));
+		
+		manager.logout();
+		//Try logging in as an invalid user
+		try {
+			manager.login("rjschaue", "pw");
+			fail("Should not reach this");
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Invalid id or password");
+		}
 	}
 
 	/**
