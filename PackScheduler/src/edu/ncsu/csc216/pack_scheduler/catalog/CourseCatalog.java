@@ -64,7 +64,7 @@ public class CourseCatalog {
 		try {
 			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);			
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(e.getMessage());
 		}
 		for (int i = 0; i < catalog.size(); i++) {
 			Course test = catalog.get(i);
