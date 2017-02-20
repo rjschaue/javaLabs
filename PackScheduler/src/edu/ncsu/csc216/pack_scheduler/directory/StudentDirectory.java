@@ -92,7 +92,7 @@ public class StudentDirectory {
 		try {
 			student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(e.getMessage());
 		}
 		
 		for (int i = 0; i < studentDirectory.size(); i++) {
