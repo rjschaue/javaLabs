@@ -1,5 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * This class stores values for a course including name, section, credits,
  * and instructorId. Has constants for boundary values.
@@ -16,6 +19,8 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** Course's instructor */
 	private String instructorId;
+	/** Validator for Course's name */
+	private CourseNameValidator validator;
 	/** Length of the section String */
 	public static final int SECTION_LENGTH = 3;
 	/** Maximum length of the name String */
@@ -82,6 +87,12 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
 	        throw new IllegalArgumentException("Invalid name");
 	    }
+		validator = new CourseNameValidator();
+		try {
+			validator.isValid(name);
+		} catch (InvalidTransitionException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}		
 		this.name = name;
 	}
 	
