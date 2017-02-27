@@ -63,9 +63,15 @@ public class CourseNameValidator {
 	 * @author Joey Schauer
 	 */
 	public abstract class State {
-		/** abstract method used when the processed character is a letter */
+		/** 
+		 * abstract method used when the processed character is a letter 
+		 * @throws InvalidTransitionException when the state transtition is invalid
+		 */
 		public abstract void onLetter() throws InvalidTransitionException;
-		/** abstract method used when the processed character is a digit */
+		/** 
+		 * abstract method used when the processed character is a digit 
+		 * @throws InvalidTransitionException when the state transtition is invalid
+		 */
 		public abstract void onDigit() throws InvalidTransitionException;
 		/**
 		 * Used when the processed character is not a letter or a digit
