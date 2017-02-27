@@ -12,7 +12,7 @@ public class InvalidTransitionException extends Exception {
 	
 	/**
 	 * InvalidTransitionException constructor that takes a message
-	 * @param message the exception message
+	 * @param message the sent exception message
 	 */
 	public InvalidTransitionException(String message) {
 		super(message);
