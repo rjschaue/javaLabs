@@ -33,7 +33,7 @@ public class Schedule {
 	public boolean addCourseToSchedule(Course course) {
 		for (int i = 0; i < schedule.size(); i++) {
 			if (schedule.get(i).isDuplicate(course)) {
-				throw new IllegalArgumentException("You are already enrolled in " + course.getName());
+				throw new IllegalArgumentException("You are already enrolled in " + course.getName() + ".");
 			}			
 		}
 		for (int i = 0; i < schedule.size(); i++) {
