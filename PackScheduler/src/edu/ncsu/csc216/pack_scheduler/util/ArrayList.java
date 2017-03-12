@@ -7,7 +7,7 @@ import java.util.AbstractList;
  * @author Joey Schauer
  * @param <E> the list element
  */
-public class ArrayList<E> extends AbstractList<E>{
+public class ArrayList<E> extends AbstractList<E> {
 	/** The initial size of the array list */
 	public static final int INIT_SIZE = 10;
 	/** The array of elements */
@@ -49,7 +49,7 @@ public class ArrayList<E> extends AbstractList<E>{
 			list[k] = list[k - 1];
 		}
 		list[index] = element;
-		size ++;
+		size++;
 		if (size == list.length) {
 			growArray();
 		}
