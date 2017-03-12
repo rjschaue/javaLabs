@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 
 /**
@@ -25,7 +24,6 @@ public class ScheduleTest {
 
 	/**
 	 * Method to test addCourseToSchedule
-	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
 	public void testAddCourseToSchedule() {
@@ -56,7 +54,6 @@ public class ScheduleTest {
 	
 	/**
 	 * Method to test removeCourseFromSchedule
-	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
 	public void testRemoveCourseFromSchedule() {
@@ -75,7 +72,6 @@ public class ScheduleTest {
 	
 	/**
 	 * Method to test resetSchedule
-	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
 	public void testResetSchedule() {
@@ -94,7 +90,6 @@ public class ScheduleTest {
 	
 	/**
 	 * Method to test getScheduledCourses
-	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
 	public void testGetScheduledCourses() {

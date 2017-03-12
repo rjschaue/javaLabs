@@ -127,7 +127,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	
 	/**
 	 * Returns the size of the array list
-	 * @reutrn the size of the array list
+	 * @return the size of the array list
 	 */
 	@Override
 	public int size() {

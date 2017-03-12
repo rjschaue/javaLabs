@@ -28,7 +28,7 @@ public class Schedule {
 	 * Adds a given course to the schedule
 	 * @param course the course to be added to the schedule
 	 * @return whether the course was added (true) or not (false)
-	 * @throws ConflictException if there is a conflict with adding the course
+	 * @throws IllegalArgumentException if the course is a duplicate or if there is a conflict
 	 */
 	public boolean addCourseToSchedule(Course course) {
 		for (int i = 0; i < schedule.size(); i++) {
