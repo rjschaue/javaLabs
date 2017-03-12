@@ -104,7 +104,7 @@ public class ArrayList<E> extends AbstractList<E> {
 				throw new IllegalArgumentException();
 			}
 		}
-		if (index < 0 || index > size()) {
+		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
 		}
 		E oldElement = list[index];
