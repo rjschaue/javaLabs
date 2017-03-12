@@ -30,7 +30,7 @@ public class Schedule {
 	 * @return whether the course was added (true) or not (false)
 	 * @throws ConflictException if there is a conflict with adding the course
 	 */
-	public boolean addCourseToSchedule(Course course) throws ConflictException {
+	public boolean addCourseToSchedule(Course course) {
 		for (int i = 0; i < schedule.size(); i++) {
 			if (schedule.get(i).isDuplicate(course)) {
 				throw new IllegalArgumentException("You are already enrolled in " + course.getName() + ".");
@@ -40,7 +40,7 @@ public class Schedule {
 			try {
 				schedule.get(i).checkConflict(course);
 			} catch (ConflictException e) {
-				throw new ConflictException("The course cannot be added due to a conflict.");
+				throw new IllegalArgumentException("The course cannot be added due to a conflict.");
 			}			
 		}
 		schedule.add(course);

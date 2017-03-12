@@ -28,7 +28,7 @@ public class ScheduleTest {
 	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
-	public void testAddCourseToSchedule() throws ConflictException {
+	public void testAddCourseToSchedule() {
 		Schedule schedule = new Schedule();
 		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
 		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
@@ -47,7 +47,7 @@ public class ScheduleTest {
 		try {
 			schedule.addCourseToSchedule(course3);
 			fail();
-		} catch (ConflictException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "The course cannot be added due to a conflict.");
 		}
 		
@@ -59,7 +59,7 @@ public class ScheduleTest {
 	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
-	public void testRemoveCourseFromSchedule() throws ConflictException {
+	public void testRemoveCourseFromSchedule() {
 		Schedule schedule = new Schedule();
 		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
 		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
@@ -78,7 +78,7 @@ public class ScheduleTest {
 	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
-	public void testResetSchedule() throws ConflictException {
+	public void testResetSchedule() {
 		Schedule schedule = new Schedule();
 		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
 		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
@@ -97,7 +97,7 @@ public class ScheduleTest {
 	 * @throws ConflictException if there is a course conflict
 	 */
 	@Test
-	public void testGetScheduledCourses() throws ConflictException {
+	public void testGetScheduledCourses() {
 		Schedule schedule = new Schedule();
 		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
 		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
