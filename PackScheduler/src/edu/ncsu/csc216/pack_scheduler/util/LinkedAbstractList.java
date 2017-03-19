@@ -66,20 +66,17 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		ListNode current = front;
-		ListNode previous = null;
-		int count = 0;
-		
-		while(current != null && count != index) {
-			previous = current;
-			current = current.next;
-			count++;
-		}
-		
-		if (current == front) {
-			front = new ListNode(element, front);
-		} else {
-			previous.next = new ListNode(element, current);
+		if (index == 0) {
+			front = new ListNode(element);
+		} else if (front != null) {
+			ListNode current = front;
+			while (current != null && index > 1) {
+				current = current.next;
+				index--;
+			}
+			if (current != null) {
+				current.next = new ListNode(element, current.next);
+			}
 		}
 		size++;		
 	}
@@ -98,12 +95,11 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		
 		ListNode current = front;
 		ListNode previous = null;
-		int count = 0;
 		
-		while (current != null && count != index) {
+		while (current != null && index > 0) {
 			previous = current;
 			current = current.next;
-			count++;
+			index--;
 		}
 		
 		if (current != null) {
@@ -144,19 +140,19 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		
 		ListNode current = front;
-		ListNode previous = null;
-		int count = 0;
 		
-		while (current != null && count != index) {
-			previous = current;
+		while (current != null && index > 0) {
 			current = current.next;
-			count++;
+			index--;
 		}
 		
-		if (current == null) {
-			return null;
+		if (current != null) {
+			E replaced = current.data;
+			current.data = element;
+			return replaced;
 		}
-		return current.data;
+		
+		return null;
 	}
 	
 	/**
@@ -172,13 +168,10 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		
 		ListNode current = front;
-		ListNode previous = null;
-		int count = 0;
 		
-		while (current != null && count != index) {
-			previous = current;
+		while (current != null && index > 0) {
 			current = current.next;
-			count++;
+			index--;
 		}
 		if (current == null) {
 			return null;
