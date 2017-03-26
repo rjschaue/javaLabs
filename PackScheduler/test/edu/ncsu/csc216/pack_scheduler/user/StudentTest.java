@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
+
 /**
  * Tests the Student Class
  * 
@@ -585,5 +588,30 @@ public class StudentTest {
 		//Testing students with different last name, first name and id
 		assertEquals(1, s1.compareTo(s6));
 		assertEquals(-1, s6.compareTo(s1));
+	}
+	
+	/**
+	 * Test canAdd
+	 */
+	@Test
+	public void testCanAdd() {
+		Student s = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		Schedule schedule = s.getSchedule();
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "TH", 1200, 1300);
+		Course course3 = new Course("CSC316", "Java3", "001", 3, "teach1", 10, "MW", 1400, 1500);
+		Course course4 = new Course("CSC416", "Java4", "001", 4, "teach1", 10, "MW", 1200, 1300);
+		
+		schedule.addCourseToSchedule(course1);
+		schedule.addCourseToSchedule(course2);
+		
+		//Checking to make sure courses can't be added above max credits
+		assertFalse(s.canAdd(course3));
+		//Checking to make sure duplicate courses can't be added
+		assertFalse(s.canAdd(course1));
+		//Checking to make sure conflicting courses can't be added
+		assertFalse(s.canAdd(course4));
+		//Checking to make sure null courses can't be added
+		assertFalse(s.canAdd(null));	
 	}
 }

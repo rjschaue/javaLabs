@@ -107,4 +107,38 @@ public class Schedule {
 	public String getTitle() {
 		return title;
 	}
+	
+	/**
+	 * Returns the number of credits on the schedule
+	 * @return the number of credits on the schedule
+	 */
+	public int getScheduleCredits() {
+		int scheduleCredits = 0;
+		for (int i = 0; i < schedule.size(); i++) {
+			scheduleCredits += schedule.get(i).getCredits();
+		}
+		return scheduleCredits;
+	}
+	
+	/**
+	 * Determines if a course can be added to the schedule
+	 * @param course the course to check and see if it can be added
+	 * @return if the course can be added (true) or not (false)
+	 */
+	public boolean canAdd(Course course) {
+		if (course == null) {
+			return false;
+		}
+		for (int i = 0; i < schedule.size(); i++) {
+			if (schedule.get(i).isDuplicate(course)) {
+				return false;
+			}
+			try {
+				schedule.get(i).checkConflict(course);
+			} catch (ConflictException e) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
