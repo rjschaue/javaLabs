@@ -145,4 +145,43 @@ public class ScheduleTest {
 			assertEquals(e.getMessage(), "Title cannot be null.");
 		}
 	}
+	
+	/**
+	 * Test getScheduleCredits
+	 */
+	@Test
+	public void testGetScheduleCredits() {
+		Schedule schedule = new Schedule();
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "TH", 1200, 1300);
+		
+		//Test schedule with no classes
+		assertEquals(schedule.getScheduleCredits(), 0);
+		
+		assertTrue(schedule.addCourseToSchedule(course1));
+		assertTrue(schedule.addCourseToSchedule(course2));
+		
+		//Test schedule with classes
+		assertEquals(schedule.getScheduleCredits(), 7);
+	}
+	
+	/**
+	 * Test canAdd
+	 */
+	@Test
+	public void testCanAdd() {
+		Schedule schedule = new Schedule();
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "MW", 1200, 1300);
+		
+		//Test adding a null course
+		assertFalse(schedule.canAdd(null));
+		//Test adding a valid course
+		assertTrue(schedule.canAdd(course1));
+		schedule.addCourseToSchedule(course1);
+		//Test adding a duplicate course
+		assertFalse(schedule.canAdd(course1));
+		//Test adding a conflicting course
+		assertFalse(schedule.canAdd(course2));		
+	}
 }
