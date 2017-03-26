@@ -135,7 +135,7 @@ public class CourseCatalog {
             		catalogString[i][j] = c.getMeetingString();
             	}     
             	if (j == 4) {
-            		catalogString[i][j] = "" + c.getCredits();
+            		catalogString[i][j] = "" + c.getCourseRoll().getOpenSeats();
             	}
             }
         }

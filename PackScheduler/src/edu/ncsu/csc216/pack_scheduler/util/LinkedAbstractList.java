@@ -75,8 +75,12 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 				index--;
 			}
 			if (current != null) {
-				current.next = new ListNode(element, current.next);
-			}
+				if (current.next != null) {
+					current.next = new ListNode(element, current.next);
+				} else {
+					current.next = new ListNode(element);
+				}
+			} 
 		}
 		size++;		
 	}
