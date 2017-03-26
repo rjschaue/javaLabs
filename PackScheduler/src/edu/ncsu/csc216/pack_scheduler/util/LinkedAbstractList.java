@@ -67,7 +67,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		
 		if (index == 0) {
-			front = new ListNode(element);
+			front = new ListNode(element, front);
 		} else if (front != null) {
 			ListNode current = front;
 			while (current != null && index > 1) {

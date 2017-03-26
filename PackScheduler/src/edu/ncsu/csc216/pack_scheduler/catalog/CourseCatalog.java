@@ -118,10 +118,10 @@ public class CourseCatalog {
 			catalogString = new String[0][0];
 			return catalogString;
 		}
-		catalogString = new String[catalog.size()][4];
+		catalogString = new String[catalog.size()][5];
 		for (int i = 0; i < catalog.size(); i++) {
             Course c = catalog.get(i);
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 5; j++) {
             	if (j == 0) {
             		catalogString[i][j] = c.getName();
             	}
@@ -133,7 +133,10 @@ public class CourseCatalog {
             	}
             	if (j == 3) {
             		catalogString[i][j] = c.getMeetingString();
-            	}           	
+            	}     
+            	if (j == 4) {
+            		catalogString[i][j] = "" + c.getCredits();
+            	}
             }
         }
 		return catalogString;
