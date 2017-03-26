@@ -77,11 +77,11 @@ public class Schedule {
 			scheduleString = new String[0][0];
 			return scheduleString;
 		}
-		scheduleString = new String[schedule.size()][4];
+		scheduleString = new String[schedule.size()][5];
 		for (int i = 0; i < schedule.size(); i++) {
             Course c = schedule.get(i);
             String[] s = c.getShortDisplayArray();
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 5; j++) {
             	scheduleString[i][j] = s[j];
             }
         }
