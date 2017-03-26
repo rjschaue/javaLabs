@@ -22,8 +22,13 @@ public class CourseRoll {
 	 * @param enrollmentCap the capacity for enrollment for the course
 	 */
 	public CourseRoll(int enrollmentCap) {
-		setEnrollmentCap(enrollmentCap);
-		roll = new LinkedAbstractList<Student>(this.enrollmentCap);
+		try {
+			setEnrollmentCap(enrollmentCap);
+			roll = new LinkedAbstractList<Student>(this.enrollmentCap);
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException();
+		}
+		
 	}
 	
 	/**
