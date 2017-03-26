@@ -35,6 +35,8 @@ public class CourseCatalogTest {
 	private static final int CREDITS = 4;
 	/** Course instructor id */
 	private static final String INSTRUCTOR_ID = "sesmith5";
+	/** Course enrollment capacity */
+	private static final int ENROLLMENT_CAP = 10;
 	/** Course meeting days */
 	private static final String MEETING_DAYS = "TH";
 	/** Course start time */
@@ -76,7 +78,7 @@ public class CourseCatalogTest {
 		CourseCatalog catalog = new CourseCatalog();
 		
 		//Adds courses to the catalog
-		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		
 		//Tests to see if newCourseCatalog clears out any existing courses
@@ -113,22 +115,22 @@ public class CourseCatalogTest {
 	@Test
 	public void testAddCoursesToCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
-		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Tests adding a new course to the catalog
-		assertTrue(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		assertTrue(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		assertEquals(1, catalog.getCourseCatalog().length);
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
 		
 		//Tests adding an existing course to the catalog
-		assertFalse(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		assertFalse(catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		
 		//Test adding a course with the same name and section only
-		assertFalse(catalog.addCourseToCatalog(NAME, "Something", SECTION, 3, "teacher", "MW", 800, 900));
+		assertFalse(catalog.addCourseToCatalog(NAME, "Something", SECTION, 3, "teacher", 10, "MW", 800, 900));
 		
 		//Tests adding an invalid course to the catalog
 		try {
-			catalog.addCourseToCatalog(null, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+			catalog.addCourseToCatalog(null, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		} catch (IllegalArgumentException e) {
 			assertEquals("Invalid name", e.getMessage());
 		}
@@ -140,10 +142,10 @@ public class CourseCatalogTest {
 	@Test
 	public void testRemoveCourseFromCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
-		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Adds a course to the catalog to ensure there is at least one
-		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
 		
@@ -162,8 +164,8 @@ public class CourseCatalogTest {
 	@Test
 	public void testGetCourseFromCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
-		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Tests getting a course from the catalog that exists
 		assertEquals(course, catalog.getCourseFromCatalog(NAME, SECTION));
@@ -181,8 +183,8 @@ public class CourseCatalogTest {
 	@Test
 	public void testGetCourseCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
-		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		
 		//Gets the course catalog string array 
 		String[][] catalogString = catalog.getCourseCatalog();
@@ -207,7 +209,7 @@ public class CourseCatalogTest {
 	@Test
 	public void testSaveCourseCatalog() {
 		CourseCatalog catalog = new CourseCatalog();
-		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		catalog.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(1, catalog.getCourseCatalog().length);
 		
 		//tests saving the catalog to a file then checking it against expected outcomes

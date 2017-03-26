@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
+ * Test for LinkedAbstractList class
  * @author Joey
- *
  */
 public class LinkedAbstractListTest {
 

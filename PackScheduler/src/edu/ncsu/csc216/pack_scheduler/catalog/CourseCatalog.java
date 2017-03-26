@@ -52,6 +52,7 @@ public class CourseCatalog {
 	 * @param section The section of the course
 	 * @param credits The credits for the course
 	 * @param instructorId The instructor id of the course
+	 * @param enrollmentCap The enrollment capacity for the course
 	 * @param meetingDays The meeting days for the course
 	 * @param startTime The start time of the course
 	 * @param endTime The end time of the course
@@ -59,10 +60,10 @@ public class CourseCatalog {
 	 * @throws IllegalArgumentException If something goes wrong with creating the Course
 	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, 
-									   String instructorId, String meetingDays, int startTime, int endTime) {
+									   String instructorId, int enrollmentCap, String meetingDays, int startTime, int endTime) {
 		Course course;
 		try {
-			course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);			
+			course = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);			
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}

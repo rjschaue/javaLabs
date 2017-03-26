@@ -70,9 +70,10 @@ public class CourseRecordIO {
 			String section = scan.next();
 			int credits = scan.nextInt();
 			String instructorId = scan.next();
+			int enrollmentCap = scan.nextInt();
 			String meetingDays = scan.next();
 			if (!scan.hasNext() && meetingDays.equals("A")) {
-				course = new Course(name, title, section, credits, instructorId, meetingDays);
+				course = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
 			} else {
 				boolean hasA = false;
 				for (int i = 0; i < meetingDays.length(); i++) {
@@ -83,7 +84,7 @@ public class CourseRecordIO {
 				if (!hasA) {
 					int startTime = scan.nextInt();
 					int endTime = scan.nextInt();
-					course = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+					course = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
 				} else {
 					scan.close();
 					throw new IllegalArgumentException();				

@@ -28,9 +28,9 @@ public class ScheduleTest {
 	@Test
 	public void testAddCourseToSchedule() {
 		Schedule schedule = new Schedule();
-		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
-		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
-		Course course3 = new Course("CSC316", "Java3", "001", 3, "teach1", "MW", 1200, 1300);
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "TH", 1200, 1300);
+		Course course3 = new Course("CSC316", "Java3", "001", 3, "teach1", 10, "MW", 1200, 1300);
 		
 		assertTrue(schedule.addCourseToSchedule(course1));
 		assertTrue(schedule.addCourseToSchedule(course2));
@@ -58,9 +58,9 @@ public class ScheduleTest {
 	@Test
 	public void testRemoveCourseFromSchedule() {
 		Schedule schedule = new Schedule();
-		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
-		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
-		Course course3 = new Course("CSC316", "Java3", "001", 3, "teach1", "MW", 1200, 1300);
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "TH", 1200, 1300);
+		Course course3 = new Course("CSC316", "Java3", "001", 3, "teach1", 10, "MW", 1200, 1300);
 		
 		assertTrue(schedule.addCourseToSchedule(course1));
 		assertTrue(schedule.addCourseToSchedule(course2));
@@ -76,8 +76,8 @@ public class ScheduleTest {
 	@Test
 	public void testResetSchedule() {
 		Schedule schedule = new Schedule();
-		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
-		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "TH", 1200, 1300);
 		
 		assertTrue(schedule.addCourseToSchedule(course1));
 		assertTrue(schedule.addCourseToSchedule(course2));
@@ -94,8 +94,8 @@ public class ScheduleTest {
 	@Test
 	public void testGetScheduledCourses() {
 		Schedule schedule = new Schedule();
-		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", "MW", 1200, 1300);
-		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", "TH", 1200, 1300);
+		Course course1 = new Course("CSC116", "Java1", "001", 3, "teach1", 10, "MW", 1200, 1300);
+		Course course2 = new Course("CSC216", "Java2", "001", 4, "teach1", 10, "TH", 1200, 1300);
 		
 		schedule.getScheduledCourses();
 		
