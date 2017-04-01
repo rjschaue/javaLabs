@@ -31,7 +31,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @throws IllegalArgumentException if the capacity is less than 1
 	 */
 	public void setCapactiy(int capacity) {
-		if (capacity > 0) {
+		if (capacity > 0 && capacity > size) {
 			this.capacity = capacity;
 		} else {
 			throw new IllegalArgumentException();
