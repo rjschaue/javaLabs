@@ -2,6 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
+import java.util.EmptyStackException;
+
 import org.junit.Test;
 
 /**
@@ -32,6 +34,19 @@ public class LinkedStackTest {
 		ls.push("One");
 		assertEquals(ls.size(), 1);
 		assertFalse(ls.isEmpty());
+		
+		for (int i = 2; i < 11; i++) {
+			ls.push("New" + i);
+			assertEquals(ls.size(), i);
+		}
+		
+		//Test pushing an object over capacity
+		try {
+			ls.push("TooMany");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(ls.size(), 10);
+		}
 	}
 
 	/**
@@ -47,7 +62,7 @@ public class LinkedStackTest {
 		try {
 			ls.pop();
 			fail();
-		} catch (IndexOutOfBoundsException e) {
+		} catch (EmptyStackException e) {
 			assertEquals(ls.size(), 0);
 			assertTrue(ls.isEmpty());
 		}
