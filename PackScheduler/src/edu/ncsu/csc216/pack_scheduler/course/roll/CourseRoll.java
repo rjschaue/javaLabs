@@ -30,9 +30,9 @@ public class CourseRoll {
 	public CourseRoll(Course c, int enrollmentCap) {
 		if (c == null) {
 			throw new IllegalArgumentException();
-		}
-		waitlist = new LinkedQueue<Student>(WAITLIST_SIZE);
+		}	
 		setEnrollmentCap(enrollmentCap);
+		waitlist = new LinkedQueue<Student>(WAITLIST_SIZE);
 		roll = new LinkedAbstractList<Student>(this.enrollmentCap);
 	}
 	
