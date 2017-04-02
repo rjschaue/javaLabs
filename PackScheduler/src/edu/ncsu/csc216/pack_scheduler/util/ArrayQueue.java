@@ -68,7 +68,7 @@ public class ArrayQueue<E> implements Queue<E>{
 	 */
 	@Override
 	public void setCapacity(int capacity) {
-		if (capacity > 0 && capacity > arrayList.size()) {
+		if (capacity > 0 && capacity >= arrayList.size()) {
 			this.capacity = capacity;
 		} else {
 			throw new IllegalArgumentException();

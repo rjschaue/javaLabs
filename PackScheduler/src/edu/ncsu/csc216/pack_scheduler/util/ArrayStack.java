@@ -27,7 +27,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 */
 	@Override
 	public void push(E element) {
-		if (arrayList.size() ==  capacity) {
+		if (arrayList.size() == capacity) {
 			throw new IllegalArgumentException();
 		}
 		arrayList.add(arrayList.size(), element);
@@ -70,7 +70,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 */
 	@Override
 	public void setCapacity(int capacity) {
-		if (capacity > 0 && capacity > arrayList.size()) {
+		if (capacity > 0 && capacity >= arrayList.size()) {
 			this.capacity = capacity;
 		} else {
 			throw new IllegalArgumentException();
