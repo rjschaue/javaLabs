@@ -25,6 +25,7 @@ public class CourseRoll {
 	
 	/**
 	 * The constructor for CourseRoll
+	 * @param c is the course for the roll
 	 * @param enrollmentCap the capacity for enrollment for the course
 	 */
 	public CourseRoll(Course c, int enrollmentCap) {
@@ -80,9 +81,9 @@ public class CourseRoll {
 			}		
 		} else {
 			try {
-				roll.add(0, s);
+				roll.add(roll.size(), s);
 			} catch (Exception e) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException(e.getMessage());
 			}
 		}	
 	}
@@ -129,6 +130,10 @@ public class CourseRoll {
 		return enrollmentCap - roll.size();
 	}
 	
+	/**
+	 * Returns the number of students on the waitlist
+	 * @return the number of students on the waitlist
+	 */
 	public int getNumberOnWaitlist() {
 		return waitlist.size();
 	}
