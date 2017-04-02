@@ -22,7 +22,7 @@ public class LinkedQueue<E> implements Queue<E>{
 	 */
 	@Override
 	public void enqueue(E element) {
-		linkedAbstractList.add(0, element);		
+		linkedAbstractList.add(linkedAbstractList.size(), element);		
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class LinkedQueue<E> implements Queue<E>{
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		return linkedAbstractList.remove(linkedAbstractList.size() - 1);
+		return linkedAbstractList.remove(0);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class LinkedQueue<E> implements Queue<E>{
 	 */
 	@Override
 	public void setCapacity(int capacity) {
-		linkedAbstractList.setCapactiy(capacity);
+		linkedAbstractList.setCapacity(capacity);
 	}
 
 }

@@ -23,7 +23,7 @@ public class LinkedStack<E> implements Stack<E> {
 	 */
 	@Override
 	public void push(E element) {
-		linkedAbstractList.add(linkedAbstractList.size(), element);		
+		linkedAbstractList.add(0, element);		
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class LinkedStack<E> implements Stack<E> {
 		if (isEmpty()) {
 			throw new EmptyStackException();
 		}
-		return linkedAbstractList.remove(linkedAbstractList.size() - 1);
+		return linkedAbstractList.remove(0);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class LinkedStack<E> implements Stack<E> {
 	 */
 	@Override
 	public void setCapacity(int capacity) {
-		linkedAbstractList.setCapactiy(capacity);	
+		linkedAbstractList.setCapacity(capacity);	
 	}
 
 }

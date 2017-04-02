@@ -10,6 +10,8 @@ import java.util.AbstractList;
 public class LinkedAbstractList<E> extends AbstractList<E> {
 	/** The front node in the list */
 	private ListNode front;
+	/** The back node in the list */
+	private ListNode back;
 	/** The size of the list */
 	private int size;
 	/** The capacity of the list */
@@ -21,8 +23,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 */
 	public LinkedAbstractList(int capacity) {
 		front = null;
+		back = null;
 		size = 0;
-		setCapactiy(capacity);
+		setCapacity(capacity);
 	}
 	
 	/**
@@ -30,7 +33,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param capacity the capacity of the list
 	 * @throws IllegalArgumentException if the capacity is less than 1
 	 */
-	public void setCapactiy(int capacity) {
+	public void setCapacity(int capacity) {
 		if (capacity > 0 && capacity > size) {
 			this.capacity = capacity;
 		} else {
@@ -60,6 +63,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			if (p.data.equals(element)) {
 				throw new IllegalArgumentException();
 			}
+			back = p;
 		}
 		
 		if (index < 0 || index > size()) {
@@ -68,6 +72,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		
 		if (index == 0) {
 			front = new ListNode(element, front);
+			back = front;
 		} else if (front != null) {
 			ListNode current = front;
 			while (current != null && index > 1) {
@@ -115,6 +120,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			size--;
 			return current.data;
 		}
+		
 		return null;
 	}
 	
