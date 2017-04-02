@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 
 /**
  * A stack that uses a linked list
+ * @param <E> is the elements type for the stack
  * @author Joey Schauer
  */
 public class LinkedStack<E> implements Stack<E> {

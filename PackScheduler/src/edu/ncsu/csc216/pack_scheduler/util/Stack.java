@@ -2,6 +2,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 /**
  * Stack interfact for PackScheduler
+ * @param <E> is the element type for the stack
  * @author Joey Schauer
  */
 public interface Stack<E> {

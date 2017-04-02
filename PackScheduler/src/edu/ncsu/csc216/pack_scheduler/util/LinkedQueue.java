@@ -4,9 +4,10 @@ import java.util.NoSuchElementException;
 
 /**
  * Stores values as a linked queue
+ * @param <E> is the element type for the queue
  * @author Joey Schauer
  */
-public class LinkedQueue<E> implements Queue<E>{
+public class LinkedQueue<E> implements Queue<E> {
 	LinkedAbstractList<E> linkedAbstractList;
 
 	/**

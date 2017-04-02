@@ -4,9 +4,10 @@ import java.util.NoSuchElementException;
 
 /**
  * Stores values as an array queue
+ * @param <E> is the element type for the queue
  * @author Joey Schauer
  */
-public class ArrayQueue<E> implements Queue<E>{
+public class ArrayQueue<E> implements Queue<E> {
 	ArrayList<E> arrayList;
 	int capacity;
 	

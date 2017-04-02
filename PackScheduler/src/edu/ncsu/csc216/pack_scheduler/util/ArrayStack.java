@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 
 /**
  * A stack that uses and array
+ * @param <E> is the element type for the stack
  * @author Joey Schauer
  */
 public class ArrayStack<E> implements Stack<E> {

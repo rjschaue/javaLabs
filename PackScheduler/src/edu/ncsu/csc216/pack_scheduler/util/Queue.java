@@ -2,6 +2,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 /**
  * Interface for a queue
+ * @param <E> is the element type for the queue
  * @author Joey Schauer
  *
  */
@@ -33,6 +34,7 @@ public interface Queue<E> {
 	
 	/**
 	 * Sets the queue's capacity
+	 * @param capacity is the capacity to set for the queue
 	 */
 	void setCapacity(int capacity);
 }
