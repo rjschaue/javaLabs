@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
@@ -8,57 +5,95 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author Joey
- *
+ * Test class for ArrayStack
+ * @author Joey Schauer
  */
 public class ArrayStackTest {
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#size()}.
+	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayStack#push(java.lang.Object)}.
 	 */
 	@Test
-	public void testSize() {
-		fail("Not yet implemented");
+	public void testPush() {
+		ArrayStack<String> as = new ArrayStack<String>(10);
+		assertEquals(as.size(), 0);
+		assertTrue(as.isEmpty());
+		
+		//Test pushing a null object
+		try {
+			as.push(null);
+			fail();
+		} catch (NullPointerException e) {
+			assertEquals(as.size(), 0);
+			assertTrue(as.isEmpty());
+		}
+		
+		//Test pushing a valid string
+		as.push("One");
+		assertEquals(as.size(), 1);
+		assertFalse(as.isEmpty());
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#ArrayList()}.
+	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayStack#pop()}.
 	 */
 	@Test
-	public void testArrayList() {
-		fail("Not yet implemented");
+	public void testPop() {
+		ArrayStack<String> as = new ArrayStack<String>(10);
+		assertEquals(as.size(), 0);
+		assertTrue(as.isEmpty());
+		
+		//Test popping an empty list
+		try {
+			as.pop();
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals(as.size(), 0);
+			assertTrue(as.isEmpty());
+		}
+		
+		as.push("One");
+		assertEquals(as.size(), 1);
+		assertFalse(as.isEmpty());
+		
+		//Test popping with a populated list
+		assertEquals(as.pop(), "One");
+		assertEquals(as.size(), 0);
+		assertTrue(as.isEmpty());
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#add(int, java.lang.Object)}.
+	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayStack#setCapacity(int)}.
 	 */
 	@Test
-	public void testAddIntE() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#remove(int)}.
-	 */
-	@Test
-	public void testRemoveInt() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#set(int, java.lang.Object)}.
-	 */
-	@Test
-	public void testSetIntE() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#get(int)}.
-	 */
-	@Test
-	public void testGetInt() {
-		fail("Not yet implemented");
+	public void testSetCapacity() {
+		ArrayStack<String> as = new ArrayStack<String>(10);
+		assertEquals(as.size(), 0);
+		assertTrue(as.isEmpty());
+		
+		//Test setting capacity to 0
+		try {
+			as.setCapacity(0);
+		} catch (IllegalArgumentException e) {
+			assertEquals(as.size(), 0);
+			assertTrue(as.isEmpty());
+		}
+		
+		as.push("One");
+		assertEquals(as.size(), 1);
+		assertFalse(as.isEmpty());
+		
+		as.push("Two");
+		assertEquals(as.size(), 2);
+		assertFalse(as.isEmpty());
+		
+		//Test setting capacity below size
+		try {
+			as.setCapacity(1);
+		} catch (IllegalArgumentException e) {
+			assertEquals(as.size(), 2);
+			assertFalse(as.isEmpty());
+		}
 	}
 
 }

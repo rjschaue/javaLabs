@@ -5,35 +5,35 @@ package edu.ncsu.csc216.pack_scheduler.util;
  * @author Joey Schauer
  */
 public class LinkedStack<E> implements Stack<E> {
-
+	LinkedAbstractList<E> linkedAbstractList;
+	
+	public LinkedStack(int capacity) {
+		linkedAbstractList = new LinkedAbstractList<E>(capacity);
+	}
+	
 	@Override
 	public void push(E element) {
-		// TODO Auto-generated method stub
-		
+		linkedAbstractList.add(linkedAbstractList.size(), element);		
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		return linkedAbstractList.remove(linkedAbstractList.size() - 1);
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return linkedAbstractList.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return linkedAbstractList.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
-		
+		linkedAbstractList.setCapactiy(capacity);	
 	}
 
 }

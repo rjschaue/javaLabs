@@ -5,35 +5,41 @@ package edu.ncsu.csc216.pack_scheduler.util;
  * @author Joey Schauer
  */
 public class ArrayStack<E> implements Stack<E> {
+	ArrayList<E> arrayList;
+	int capacity;
+	
+	public ArrayStack(int capacity) {
+		arrayList = new ArrayList<E>();
+		setCapacity(capacity);
+	}
 
 	@Override
 	public void push(E element) {
-		// TODO Auto-generated method stub
-		
+		arrayList.add(arrayList.size(), element);
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		return arrayList.remove(arrayList.size() - 1);
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return arrayList.size() == 0;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return arrayList.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
-		
+		if (capacity > 0 && capacity > arrayList.size()) {
+			this.capacity = capacity;
+		} else {
+			throw new IllegalArgumentException();
+		}		
 	}
 
 }

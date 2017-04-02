@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
@@ -8,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author Joey
- *
+ * Test class for LinkedStack
+ * @author Joey Schauer
  */
 public class LinkedStackTest {
 
@@ -18,7 +15,23 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testPush() {
-		fail("Not yet implemented");
+		LinkedStack<String> ls = new LinkedStack<String>(10);
+		assertEquals(ls.size(), 0);
+		assertTrue(ls.isEmpty());
+		
+		//Test pushing a null object
+		try {
+			ls.push(null);
+			fail();
+		} catch (NullPointerException e) {
+			assertEquals(ls.size(), 0);
+			assertTrue(ls.isEmpty());
+		}
+		
+		//Test pushing a valid string
+		ls.push("One");
+		assertEquals(ls.size(), 1);
+		assertFalse(ls.isEmpty());
 	}
 
 	/**
@@ -26,23 +39,27 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testPop() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedStack#isEmpty()}.
-	 */
-	@Test
-	public void testIsEmpty() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedStack#size()}.
-	 */
-	@Test
-	public void testSize() {
-		fail("Not yet implemented");
+		LinkedStack<String> ls = new LinkedStack<String>(10);
+		assertEquals(ls.size(), 0);
+		assertTrue(ls.isEmpty());
+		
+		//Test popping an empty list
+		try {
+			ls.pop();
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals(ls.size(), 0);
+			assertTrue(ls.isEmpty());
+		}
+		
+		ls.push("One");
+		assertEquals(ls.size(), 1);
+		assertFalse(ls.isEmpty());
+		
+		//Test popping with a populated list
+		assertEquals(ls.pop(), "One");
+		assertEquals(ls.size(), 0);
+		assertTrue(ls.isEmpty());
 	}
 
 	/**
@@ -50,7 +67,38 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testSetCapacity() {
-		fail("Not yet implemented");
+		LinkedStack<String> ls = new LinkedStack<String>(10);
+		assertEquals(ls.size(), 0);
+		assertTrue(ls.isEmpty());
+		
+		//Test setting capacity to 0
+		try {
+			ls.setCapacity(0);
+		} catch (IllegalArgumentException e) {
+			assertEquals(ls.size(), 0);
+			assertTrue(ls.isEmpty());
+		}
+		
+		ls.push("One");
+		assertEquals(ls.size(), 1);
+		assertFalse(ls.isEmpty());
+		
+		ls.push("Two");
+		assertEquals(ls.size(), 2);
+		assertFalse(ls.isEmpty());
+		
+		//Test setting capacity below size
+		try {
+			ls.setCapacity(1);
+		} catch (IllegalArgumentException e) {
+			assertEquals(ls.size(), 2);
+			assertFalse(ls.isEmpty());
+		}
+		
+		//Test setting a valid capacity
+		ls.setCapacity(20);
+		assertEquals(ls.size(), 2);
+		assertFalse(ls.isEmpty());
 	}
 
 }
