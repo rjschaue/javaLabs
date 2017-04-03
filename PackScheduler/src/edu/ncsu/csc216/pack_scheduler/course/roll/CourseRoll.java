@@ -102,7 +102,7 @@ public class CourseRoll {
 			throw new IllegalArgumentException();
 		}
 		try {
-			roll.remove(roll.indexOf(s));
+			roll.remove(s);
 			if (!waitlist.isEmpty()) {
 				Student student = waitlist.dequeue();
 				roll.add(student);
