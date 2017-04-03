@@ -35,9 +35,9 @@ public class CourseRoll {
 			throw new IllegalArgumentException();
 		}	
 		course = c;
-		setEnrollmentCap(enrollmentCap);
 		waitlist = new LinkedQueue<Student>(WAITLIST_SIZE);
-		roll = new LinkedAbstractList<Student>(this.enrollmentCap);
+		roll = new LinkedAbstractList<Student>(enrollmentCap);
+		setEnrollmentCap(enrollmentCap);
 	}
 	
 	/**
@@ -57,10 +57,14 @@ public class CourseRoll {
 		if (enrollmentCap < MIN_ENROLLMENT || enrollmentCap > MAX_ENROLLMENT) {
 			throw new IllegalArgumentException();
 		}
-		if (roll != null && roll.size() > enrollmentCap) {
-			throw new IllegalArgumentException();
+		if (roll != null) {
+			if (roll.size() > enrollmentCap) {
+				throw new IllegalArgumentException();
+			} else {
+				this.enrollmentCap = enrollmentCap;
+				roll.setCapacity(enrollmentCap);
+			}		
 		}
-		this.enrollmentCap = enrollmentCap;
 	}
 	
 	/**
