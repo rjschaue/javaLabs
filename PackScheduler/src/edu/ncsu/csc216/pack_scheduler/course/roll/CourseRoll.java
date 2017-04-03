@@ -111,14 +111,8 @@ public class CourseRoll {
 				waitlist.enqueue(student);
 			}
 		}
-		int index = Integer.MAX_VALUE;
-		for (int i = 0; i < roll.size(); i++) {
-			if (roll.get(i).equals(s)) {
-				index = i;
-			}
-		}
 		try {
-			roll.remove(index);
+			roll.remove(s);
 			if (!waitlist.isEmpty()) {
 				Student student = waitlist.dequeue();
 				roll.add(student);
