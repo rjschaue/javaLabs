@@ -16,6 +16,8 @@ public class CourseRoll {
 	private int enrollmentCap;
 	/** A waitlist for the course */
 	private LinkedQueue<Student> waitlist;
+	/** The course for the roll */
+	private Course course;
 	/** The minimum enrollment value for a course */
 	private static final int MIN_ENROLLMENT = 10;
 	/** The maximum enrollment value for a course */
@@ -32,6 +34,7 @@ public class CourseRoll {
 		if (c == null) {
 			throw new IllegalArgumentException();
 		}	
+		course = c;
 		setEnrollmentCap(enrollmentCap);
 		waitlist = new LinkedQueue<Student>(WAITLIST_SIZE);
 		roll = new LinkedAbstractList<Student>(this.enrollmentCap);
@@ -82,6 +85,7 @@ public class CourseRoll {
 		} else {
 			try {
 				roll.add(roll.size(), s);
+				s.getSchedule().addCourseToSchedule(course);
 			} catch (Exception e) {
 				throw new IllegalArgumentException(e.getMessage());
 			}
@@ -100,7 +104,9 @@ public class CourseRoll {
 		try {
 			roll.remove(s);
 			if (!waitlist.isEmpty()) {
-				roll.add(waitlist.dequeue());
+				Student student = waitlist.dequeue();
+				roll.add(student);
+				student.getSchedule().addCourseToSchedule(course);
 			}			
 		} catch (Exception e) {
 			throw new IllegalArgumentException();
