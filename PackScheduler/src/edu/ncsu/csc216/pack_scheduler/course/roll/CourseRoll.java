@@ -113,7 +113,7 @@ public class CourseRoll {
 	 * @return If the student can enroll in the course (true) or not (false)
 	 */
 	public boolean canEnroll(Student s) {
-		if (getOpenSeats() == 0) {
+		if (getOpenSeats() == 0 && getNumberOnWaitlist() == WAITLIST_SIZE) {
 			return false;
 		}
 		if (roll.contains(s)) {
