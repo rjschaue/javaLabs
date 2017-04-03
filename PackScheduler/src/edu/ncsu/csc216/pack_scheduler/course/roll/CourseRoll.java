@@ -105,6 +105,12 @@ public class CourseRoll {
 		if (s == null) {
 			throw new IllegalArgumentException();
 		}
+		for (int i = 0; i < waitlist.size(); i++) {
+			Student student = waitlist.dequeue();
+			if (!student.equals(s)) {
+				waitlist.enqueue(student);
+			}
+		}
 		try {
 			roll.remove(s);
 			if (!waitlist.isEmpty()) {
