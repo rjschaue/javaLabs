@@ -51,7 +51,7 @@ public class LinkedStack<E> implements Stack<E> {
 	
 	/**
 	 * Returns the size of the stack
-	 * @reutrn the size of the stack
+	 * @return the size of the stack
 	 */
 	@Override
 	public int size() {

@@ -102,25 +102,32 @@ public class CourseRoll {
 	 * @throws IllegalArgumentException if s is null or the LinkedAbstractList throws it's own exception
 	 */
 	public void drop(Student s) {
-		if (s == null) {
-			throw new IllegalArgumentException();
-		}
-		for (int i = 0; i < waitlist.size(); i++) {
-			Student student = waitlist.dequeue();
-			if (!student.equals(s)) {
-				waitlist.enqueue(student);
-			}
-		}
-		try {
-			roll.remove(s);
-			if (!waitlist.isEmpty()) {
+	    if (s == null) {
+	    	throw new IllegalArgumentException();
+	    }
+	 	int count = 0;
+	    if (!waitlist.isEmpty()) {
+	        for (int i = 0; i < waitlist.size(); i++) {
 				Student student = waitlist.dequeue();
-				roll.add(student);
-				student.getSchedule().addCourseToSchedule(course);
-			}			
-		} catch (Exception e) {
-			throw new IllegalArgumentException();
-		}
+				if (student.equals(s)) {
+	                count ++;
+				} else {
+	                waitlist.enqueue(student);
+	            }           
+			}
+	    }
+	    if (count == 0) {
+	        try {
+	            roll.remove(s);
+				if (!waitlist.isEmpty()) {
+					Student student = waitlist.dequeue();
+					roll.add(student);
+					student.getSchedule().addCourseToSchedule(course);
+				}
+	        } catch (Exception e ) {
+	            throw new IllegalArgumentException(e.getMessage());
+	        }
+	    }
 	}
 	
 	/**

@@ -78,7 +78,7 @@ public class LinkedQueueTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedQueue#setCapacity()}.
+	 * Test method for setCapacity
 	 */
 	@Test
 	public void testSetCapacity() {
