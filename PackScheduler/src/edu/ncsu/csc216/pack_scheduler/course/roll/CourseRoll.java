@@ -110,7 +110,7 @@ public class CourseRoll {
 	        for (int i = 0; i < waitlist.size(); i++) {
 				Student student = waitlist.dequeue();
 				if (student.equals(s)) {
-	                count ++;
+	                count++;
 				} else {
 	                waitlist.enqueue(student);
 	            }           
