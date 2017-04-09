@@ -39,9 +39,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	@Override
 	public ListIterator<E> listIterator(int index) {
 		try {
-			return new LinkedListIterator(index);
+			LinkedListIterator iterator = new LinkedListIterator(index);
+			return iterator;
 		} catch (IndexOutOfBoundsException e) {
-			throw new IndexOutOfBoundsException(e.getMessage());
+			throw new IndexOutOfBoundsException();
 		}		
 	}
 
