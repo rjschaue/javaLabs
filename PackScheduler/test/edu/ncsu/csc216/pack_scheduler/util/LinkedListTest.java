@@ -2,6 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
+import java.util.ListIterator;
+
 import org.junit.Test;
 
 /**
@@ -76,7 +78,7 @@ public class LinkedListTest {
 	 */
 	@Test
 	public void testRemove() {
-		LinkedList<String> list = new LinkedList<String>();		
+		LinkedList<String> list = new LinkedList<String>();	
 		assertTrue(list.size() == 0);
 		
 		for (int i = 0; i < 10; i++) {
@@ -166,7 +168,7 @@ public class LinkedListTest {
 		assertEquals(list.set(9, "newString9"), "String9");
 		assertTrue(list.size() == 10);
 		
-		//Set a string at the end of the list
+		//Set a string in the middle of the list
 		assertEquals(list.set(5, "newString5"), "String5");
 		assertTrue(list.size() == 10);
 	}
@@ -204,4 +206,60 @@ public class LinkedListTest {
 		assertEquals(list.get(0), "String0");
 	}
 
+	/**
+	 * Test LinkedListIterator class
+	 */
+	@Test
+	public void testLinkedListIterator() {		
+		LinkedList<String> list = new LinkedList<String>();		
+		assertTrue(list.size() == 0);
+		
+		for (int i = 0; i < 10; i++) {
+			list.add(i, "String" + i);
+			assertTrue(list.size() == (i + 1));
+		}
+		
+		//set listIterator to linked list's iterator at 0
+		ListIterator<String> listIterator = list.listIterator(0);
+		
+		//Ensure previous is at -1
+		assertFalse(listIterator.hasPrevious());
+		assertEquals(listIterator.previousIndex(), -1);
+		
+		//Ensure next is at 0
+		assertTrue(listIterator.hasNext());
+		assertEquals(listIterator.nextIndex(), 0);
+		
+		//Try removing when iterator is new
+		try {
+			listIterator.remove();
+			fail();
+		} catch (IllegalStateException e) {
+			assertEquals(listIterator.previousIndex(), -1);
+			assertEquals(listIterator.nextIndex(), 0);
+		}
+		
+		//Try setting when iterator is new
+		try {
+			listIterator.set("String-1");
+			fail();
+		} catch (IllegalStateException e) {
+			assertEquals(listIterator.previousIndex(), -1);
+			assertEquals(listIterator.nextIndex(), 0);
+		}
+		
+		//Advance list iterator
+		String next = listIterator.next();
+		assertTrue(listIterator.hasPrevious());
+		assertEquals(listIterator.previousIndex(), 0);
+		assertEquals(listIterator.nextIndex(), 1);
+		
+		//Move list iterator backwards
+		String previous = listIterator.previous();
+		assertEquals(listIterator.previousIndex(), -1);
+		assertEquals(listIterator.nextIndex(), 0);
+		
+		//Assert that the next and previous values are equal
+		assertEquals(next, previous);
+	}
 }

@@ -174,7 +174,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			return next != null;
+			return next.data != null;
 		}
 
 		/**
@@ -183,7 +183,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasPrevious() {
-			return previous != null;
+			return previous.data != null;
 		}
 
 		/**
@@ -199,6 +199,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			lastRetrieved = next;
 			previous = next;
 			next = next.next;
+			nextIndex++;
+			previousIndex++;
 			return lastRetrieved.data;
 		}
 
@@ -224,6 +226,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			lastRetrieved = previous;
 			next = previous;
 			previous = previous.prev;
+			nextIndex--;
+			previousIndex--;
 			return lastRetrieved.data;
 		}
 
