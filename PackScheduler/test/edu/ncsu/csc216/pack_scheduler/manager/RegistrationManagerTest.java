@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -50,16 +51,30 @@ public class RegistrationManagerTest {
 		StudentDirectory directory2 = new StudentDirectory();
 		assertEquals(directory1.getStudentById("rjschaue"), directory2.getStudentById("rjschaue"));
 	}
+	
+	/**
+	 * Tests the get faculty directory method
+	 */
+	@Test
+	public void testGetFacultyDirectory() {
+		//Testing to see if two new directorys lack the same user
+		FacultyDirectory directory1 = manager.getFacultyDirectory();
+		FacultyDirectory directory2 = new FacultyDirectory();
+		assertEquals(directory1.getFacultyById("rjschaue"), directory2.getFacultyById("rjschaue"));
+	}
 
 	/**
 	 * Tests the login method
 	 */
 	@Test
-	public void testLogin() {	
+	public void testLogin() {		
 		//Set student directory for manager
-		StudentDirectory sd = new StudentDirectory();
+		StudentDirectory sd = manager.getStudentDirectory();
 		sd.addStudent("Joey", "Schauer", "rjschaue", "rjschaue@ncsu.edu", "pw", "pw", 9);
-		manager.setStudentDirectory(sd);
+		
+		//Set faculty directory for manager
+		FacultyDirectory fd = manager.getFacultyDirectory();
+		fd.addFaculty("Lorik", "Quiin", "lquiin", "lquiin@ncsu.edu", "pw", "pw", 3);
 		
 		//try logging in as a valid user
 		manager.login("registrar", "Regi5tr@r");
@@ -72,6 +87,11 @@ public class RegistrationManagerTest {
 		manager.logout();
 		manager.login("rjschaue", "pw");
 		assertEquals(manager.getCurrentUser().getId(), "rjschaue");
+		
+		//Try logging in a valid faculty
+		manager.logout();
+		manager.login("lquiin", "pw");
+		assertEquals(manager.getCurrentUser().getId(), "lquiin");
 	}
 
 	/**

@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
@@ -23,6 +24,8 @@ public class RegistrationManager {
 	private CourseCatalog courseCatalog;
 	/** gets the student directory */
 	private StudentDirectory studentDirectory;
+	/** gets the faculty directory */
+	private FacultyDirectory facultyDirectory;
 	/** gets the registrar's information */
 	private User registrar;
 	/** gets the current user of the scheduler */
@@ -49,6 +52,7 @@ public class RegistrationManager {
 	private RegistrationManager() {
 		courseCatalog = new CourseCatalog();
 		studentDirectory = new StudentDirectory();
+		facultyDirectory = new FacultyDirectory();
 		registrar = new Registrar();
 		currentUser = null;
 	}
@@ -79,6 +83,14 @@ public class RegistrationManager {
 	public StudentDirectory getStudentDirectory() {
 		return studentDirectory;
 	}
+	
+	/**
+	 * Returns the faculty directory
+	 * @return the faculty directory
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
+	}
 
 	/**
 	 * Processes the login of a given user
@@ -108,22 +120,24 @@ public class RegistrationManager {
 			}
 		}
 		
-		Student s = studentDirectory.getStudentById(id);
-		if (s == null) {
-			throw new IllegalArgumentException("User doesn't exist.");
+		User user = studentDirectory.getStudentById(id);
+		if (user == null) {
+			user = facultyDirectory.getFacultyById(id);
+			if (user == null) {
+				throw new IllegalArgumentException("User doesn't exist.");
+			}
 		}
 		try {
 		MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
 		digest.update(password.getBytes());
 		String localHashPW = new String(digest.digest());
-		if (s.getPassword().equals(localHashPW)) {
-			currentUser = s;
+		if (user.getPassword().equals(localHashPW)) {
+			currentUser = user;
 				return true;
 		}
 		} catch (NoSuchAlgorithmException e) {
 				throw new IllegalArgumentException("Invalid id or password");
-		}	
-			
+		}				
 		return false;
 	}
 
@@ -148,14 +162,7 @@ public class RegistrationManager {
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
-	}
-		
-	/**
-	 * Setter for studentDirectory to help with testing
-	 * @param studentDirectory the studentDirectory to be added
-	 */
-	public void setStudentDirectory(StudentDirectory studentDirectory) {
-		this.studentDirectory = studentDirectory;
+		facultyDirectory.newFacultyDirectory();
 	}
 	
 	/**
