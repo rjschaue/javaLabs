@@ -99,9 +99,9 @@ public class FacultyRecordIOTest {
 	@Test
 	public void testWriteFacultyRecords() {
 		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
-	    faculty.add(new Faculty("Ashely","Witt","awitt","mollis@Fuscealiquetmagna.net",hashPW,2));
-	    faculty.add(new Faculty("Fiona","Meadows","fmeadow","pharetra.sed@et.org",hashPW,3));
-	    faculty.add(new Faculty("Brent","Brewer","bbrewer","sem.semper@orcisem.co.uk",hashPW,1));	    
+	    faculty.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
+	    faculty.add(new Faculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", hashPW, 3));
+	    faculty.add(new Faculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", hashPW, 1));	    
 	    
 	    try {
 			FacultyRecordIO.writeFacultyRecords("test-files/actual_faculty_records.txt", faculty);
@@ -118,9 +118,9 @@ public class FacultyRecordIOTest {
 	@Test
 	public void testWriteFacultyRecordsNoPermissions() {
 		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
-	    faculty.add(new Faculty("Ashely","Witt","awitt","mollis@Fuscealiquetmagna.net",hashPW,2));
-	    faculty.add(new Faculty("Fiona","Meadows","fmeadow","pharetra.sed@et.org",hashPW,3));
-	    faculty.add(new Faculty("Brent","Brewer","bbrewer","sem.semper@orcisem.co.uk",hashPW,1));	
+	    faculty.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
+	    faculty.add(new Faculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", hashPW, 3));
+	    faculty.add(new Faculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", hashPW, 1));	
 	    
 	    try {
 	        FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
