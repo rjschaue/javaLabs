@@ -173,7 +173,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			return next.data != null;
+			return nextIndex < size;
 		}
 
 		/**
@@ -182,7 +182,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasPrevious() {
-			return previous.data != null;
+			return previousIndex > -1;
 		}
 
 		/**
@@ -192,7 +192,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public E next() {
-			if (next == null) {
+			if (!hasNext()) {
 				throw new NoSuchElementException();
 			}
 			lastRetrieved = next;
@@ -219,7 +219,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public E previous() {
-			if (previous == null) {
+			if (!hasPrevious()) {
 				throw new NoSuchElementException();
 			}
 			lastRetrieved = previous;
@@ -248,9 +248,13 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (lastRetrieved == null) {
 				throw new IllegalStateException();
 			}
-			lastRetrieved.next.prev = lastRetrieved.prev;
-			lastRetrieved.prev.next = lastRetrieved.next;
+            ListNode p = lastRetrieved.prev;
+            ListNode n = lastRetrieved.next;
+			n.prev = p;
+			p.next = n;
 			size--;
+            nextIndex--;
+            previousIndex--;
 			lastRetrieved = null;
 		}
 
