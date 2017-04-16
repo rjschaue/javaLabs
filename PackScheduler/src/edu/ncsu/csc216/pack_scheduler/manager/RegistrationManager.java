@@ -262,8 +262,9 @@ public class RegistrationManager {
 			} catch (IllegalArgumentException e) {
 				throw new IllegalArgumentException(e.getMessage());
 			}
-		} 
-		return false;
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
@@ -277,6 +278,8 @@ public class RegistrationManager {
 			} catch (IllegalArgumentException e) {
 				throw new IllegalArgumentException(e.getMessage());
 			}
+		} else {
+			throw new IllegalArgumentException();
 		}
 	}
 

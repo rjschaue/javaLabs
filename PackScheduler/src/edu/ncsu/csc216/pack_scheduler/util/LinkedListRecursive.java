@@ -99,7 +99,7 @@ public class LinkedListRecursive<E> {
 			if (isEmpty()) {
 				front = new ListNode(element, null);
 			} else {
-				front = new ListNode(element, front.next);
+				front = new ListNode(element, front);
 			}			
 			size++;
 			return true;

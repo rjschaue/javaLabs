@@ -454,7 +454,12 @@ public class RegistrationManagerTest {
 		manager.logout();
 		
 		//Test removing with null user
-		assertFalse(manager.removeFacultyFromCourse(course, faculty));
+		try {
+			manager.removeFacultyFromCourse(course, faculty);
+		} catch (IllegalArgumentException e) {
+			assertEquals(faculty.getSchedule().getNumScheduledCourses(),0);
+		}
+		
 		
 		manager.login("registrar", "Regi5tr@r");
 		
@@ -484,7 +489,11 @@ public class RegistrationManagerTest {
 		
 		manager.logout();
 		
-		manager.resetFacultySchedule(faculty);
+		try {
+			manager.resetFacultySchedule(faculty);
+		} catch (IllegalArgumentException e) {
+			assertEquals(faculty.getSchedule().getNumScheduledCourses(), 0);
+		}
 		
 		manager.login("registrar", "Regi5tr@r");
 		
