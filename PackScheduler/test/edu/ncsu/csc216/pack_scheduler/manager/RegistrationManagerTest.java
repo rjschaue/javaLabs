@@ -413,7 +413,12 @@ public class RegistrationManagerTest {
 		manager.logout();
 		
 		//Test adding with a null user
-		assertFalse(manager.addFacultyToCourse(course, faculty));
+		try {
+			manager.addFacultyToCourse(course, faculty);
+		} catch (IllegalArgumentException e) {
+			assertEquals(faculty.getSchedule().getNumScheduledCourses(), 0);
+		}
+		
 		
 		manager.login("registrar", "Regi5tr@r");
 		

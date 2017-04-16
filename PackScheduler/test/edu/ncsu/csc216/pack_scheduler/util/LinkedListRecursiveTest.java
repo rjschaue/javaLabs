@@ -135,12 +135,8 @@ public class LinkedListRecursiveTest {
 		assertTrue(list.size() == 7);
 		
 		//Element only remove a null string 
-		try {
-			list.remove(null);
-			fail();
-		} catch (NullPointerException e) {
-			assertTrue(list.size() == 7);
-		}
+		assertFalse(list.remove(null));
+
 		
 		LinkedListRecursive<String> list2 = new LinkedListRecursive<String>();	
 		//Element only remove a string from an empty list
