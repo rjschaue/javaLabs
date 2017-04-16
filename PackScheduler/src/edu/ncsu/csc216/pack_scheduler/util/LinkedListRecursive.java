@@ -96,7 +96,11 @@ public class LinkedListRecursive<E> {
 			throw new IndexOutOfBoundsException();
 		}
 		if (idx == 0) {
-			front = new ListNode(element, null);
+			if (isEmpty()) {
+				front = new ListNode(element, null);
+			} else {
+				front = new ListNode(element, front.next);
+			}			
 			size++;
 			return true;
 		}
@@ -147,7 +151,7 @@ public class LinkedListRecursive<E> {
 			throw new NullPointerException();
 		}
 		if (isEmpty()) {
-			throw new IllegalArgumentException();
+			return false;
 		}
 		if (!contains(element)) {
 			return false;

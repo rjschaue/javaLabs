@@ -144,12 +144,8 @@ public class LinkedListRecursiveTest {
 		
 		LinkedListRecursive<String> list2 = new LinkedListRecursive<String>();	
 		//Element only remove a string from an empty list
-		try {
-			list2.remove("String");
-			fail();
-		} catch (IllegalArgumentException e) {
+			assertFalse(list2.remove("String"));
 			assertTrue(list2.size() == 0);
-		}
 		
 		//Remove an element not on the list
 		assertFalse(list.remove("NotInList"));
