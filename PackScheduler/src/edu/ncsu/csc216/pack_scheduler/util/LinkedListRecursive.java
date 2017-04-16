@@ -148,7 +148,7 @@ public class LinkedListRecursive<E> {
 	 */
 	public boolean remove(E element) {
 		if (element == null) {
-			throw new NullPointerException();
+			return false;
 		}
 		if (isEmpty()) {
 			return false;
@@ -229,8 +229,13 @@ public class LinkedListRecursive<E> {
 		 */
 		private boolean add(int idx, E element) {
 			if (idx == 1) {
-				ListNode list = new ListNode(element, next);
-				this.next = list;
+				if (next == null) {
+					ListNode list = new ListNode(element, null);
+					this.next = list;
+				} else {
+					ListNode list = new ListNode(element, next);
+					this.next = list;
+				}	
 				size++;
 				return true;
 			}
