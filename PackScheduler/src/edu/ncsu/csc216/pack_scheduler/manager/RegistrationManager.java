@@ -257,10 +257,13 @@ public class RegistrationManager {
 	 */
 	public boolean removeFacultyFromCourse(Course course, Faculty faculty) {
 		if (currentUser != null && currentUser.equals(registrar)) {
+			try {
 				return faculty.getSchedule().removeCourseFromSchedule(course);	
-		} else {
-			throw new IllegalArgumentException();
-		}
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException(e.getMessage());
+			}
+		} 
+		return false;
 	}
 	
 	/**
@@ -269,7 +272,11 @@ public class RegistrationManager {
 	 */
 	public void resetFacultySchedule(Faculty faculty) {
 		if (currentUser != null && currentUser.equals(registrar)) {
+			try {
 				faculty.getSchedule().resetSchedule();	
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException(e.getMessage());
+			}
 		}
 	}
 
