@@ -143,8 +143,6 @@ public class LinkedListRecursive<E> {
 	 * Removes the given element from the linked list
 	 * @param element the element to be removed from the linked list
 	 * @return true if the element was successfully removed from the list
-	 * @throws NullPointerException if the given element is null
-	 * @throws IllegalArgumentException if the list is empty
 	 */
 	public boolean remove(E element) {
 		if (element == null) {
@@ -253,6 +251,9 @@ public class LinkedListRecursive<E> {
 				return this.data;
 			}
 			idx--;
+			if (next == null) {
+				return null;
+			}
 			return next.get(idx);
 		}
 		
