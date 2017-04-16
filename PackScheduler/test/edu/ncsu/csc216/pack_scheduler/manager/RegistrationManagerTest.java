@@ -6,8 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
@@ -111,6 +113,7 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testGetCurrentUser() {
+		manager.logout();
 		//testing to see if user is null when constructed
 		assertEquals(manager.getCurrentUser(), null);
 		//testing to see if the user is changed when someone is logged in
@@ -391,5 +394,101 @@ public class RegistrationManagerTest {
 	    assertEquals(0, scheduleHicksArray.length);
 	    
 	    manager.logout();
+	}
+	
+	/**
+	 * Test method for addFacultyToCourse
+	 */
+	@Test
+	public void testAddFacultyToCourse() {
+	    CourseCatalog catalog = manager.getCourseCatalog();
+	    catalog.loadCoursesFromFile("test-files/course_records.txt");
+	    
+		FacultyDirectory directory = manager.getFacultyDirectory();
+		directory.loadFacultyFromFile("test-files/faculty_records.txt");
+		
+		Course course = catalog.getCourseFromCatalog("CSC116", "001");
+		Faculty faculty = directory.getFacultyById("awitt");
+		
+		manager.logout();
+		
+		//Test adding with a null user
+		assertFalse(manager.addFacultyToCourse(course, faculty));
+		
+		manager.login("registrar", "Regi5tr@r");
+		
+		//Test adding a valid course and faculty
+		assertTrue(manager.addFacultyToCourse(course, faculty));
+		assertEquals(course.getInstructorId(), faculty.getId());
+		assertEquals(faculty.getSchedule().getNumScheduledCourses(), 1);
+		
+		//Test adding a duplicate course and faculty
+		try {
+			manager.addFacultyToCourse(course, faculty);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(course.getInstructorId(), faculty.getId());
+			assertEquals(faculty.getSchedule().getNumScheduledCourses(), 1);
+		}
+	}
+	
+	/**
+	 * Test method for removeFacultyFromCourse
+	 */
+	@Test
+	public void testRemoveFacultyFromCourse() {
+		CourseCatalog catalog = manager.getCourseCatalog();
+	    catalog.loadCoursesFromFile("test-files/course_records.txt");
+	    
+		FacultyDirectory directory = manager.getFacultyDirectory();
+		directory.loadFacultyFromFile("test-files/faculty_records.txt");
+		
+		Course course = catalog.getCourseFromCatalog("CSC116", "001");
+		Faculty faculty = directory.getFacultyById("awitt");
+		
+		manager.logout();
+		
+		//Test removing with null user
+		assertFalse(manager.removeFacultyFromCourse(course, faculty));
+		
+		manager.login("registrar", "Regi5tr@r");
+		
+		assertTrue(manager.addFacultyToCourse(course, faculty));
+		assertEquals(course.getInstructorId(), faculty.getId());
+		assertEquals(faculty.getSchedule().getNumScheduledCourses(), 1);
+		
+		//Test removing with valid course and faculty
+		assertTrue(manager.removeFacultyFromCourse(course, faculty));
+		assertNotEquals(course.getInstructorId(), faculty.getId());
+		assertEquals(faculty.getSchedule().getNumScheduledCourses(), 0);
+	}
+	
+	/**
+	 * Test method for resetFacultySchedule
+	 */
+	@Test
+	public void testResetFacultySchedule() {
+		CourseCatalog catalog = manager.getCourseCatalog();
+	    catalog.loadCoursesFromFile("test-files/course_records.txt");
+	    
+		FacultyDirectory directory = manager.getFacultyDirectory();
+		directory.loadFacultyFromFile("test-files/faculty_records.txt");
+		
+		Course course = catalog.getCourseFromCatalog("CSC116", "001");
+		Faculty faculty = directory.getFacultyById("awitt");
+		
+		manager.logout();
+		
+		manager.resetFacultySchedule(faculty);
+		
+		manager.login("registrar", "Regi5tr@r");
+		
+		assertTrue(manager.addFacultyToCourse(course, faculty));
+		assertEquals(course.getInstructorId(), faculty.getId());
+		assertEquals(faculty.getSchedule().getNumScheduledCourses(), 1);
+		
+		manager.resetFacultySchedule(faculty);
+		assertNotEquals(course.getInstructorId(), faculty.getId());
+		assertEquals(faculty.getSchedule().getNumScheduledCourses(), 0);
 	}
 }

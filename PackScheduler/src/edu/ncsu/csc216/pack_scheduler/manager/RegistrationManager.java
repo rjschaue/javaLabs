@@ -8,6 +8,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -227,6 +228,47 @@ public class RegistrationManager {
 	    } catch (IllegalArgumentException e) {
 	        //do nothing 
 	    }
+	}
+	
+	/**
+	 * Adds the given faculty member to the course
+	 * @param course the given course
+	 * @param faculty the given faculty member
+	 * @return true if the faculty member was added to the course
+	 * @throws IllegalArgumentException if attempting to add the course throws and exception
+	 */
+	public boolean addFacultyToCourse(Course course, Faculty faculty) {
+		if (currentUser != null && currentUser.equals(registrar)) {
+			try {
+				return faculty.getSchedule().addCourseToSchedule(course);	
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException(e.getMessage());
+			}	
+		}
+		return false;
+	}
+	
+	/**
+	 * Removes the given faculty member from the course
+	 * @param course the given course
+	 * @param faculty the given faculty member
+	 * @return true if the faculty is removed from the course
+	 */
+	public boolean removeFacultyFromCourse(Course course, Faculty faculty) {
+		if (currentUser != null && currentUser.equals(registrar)) {
+				return faculty.getSchedule().removeCourseFromSchedule(course);	
+		}
+		return false;
+	}
+	
+	/**
+	 * Resets the given faculty member's schedule
+	 * @param faculty the given faculty member
+	 */
+	public void resetFacultySchedule(Faculty faculty) {
+		if (currentUser != null && currentUser.equals(registrar)) {
+				faculty.getSchedule().resetSchedule();	
+		}
 	}
 
 	/**
