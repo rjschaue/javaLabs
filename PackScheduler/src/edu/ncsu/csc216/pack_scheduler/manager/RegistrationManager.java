@@ -244,8 +244,9 @@ public class RegistrationManager {
 			} catch (IllegalArgumentException e) {
 				throw new IllegalArgumentException(e.getMessage());
 			}	
+		} else {
+			throw new IllegalArgumentException();
 		}
-		return false;
 	}
 	
 	/**
@@ -257,8 +258,9 @@ public class RegistrationManager {
 	public boolean removeFacultyFromCourse(Course course, Faculty faculty) {
 		if (currentUser != null && currentUser.equals(registrar)) {
 				return faculty.getSchedule().removeCourseFromSchedule(course);	
+		} else {
+			throw new IllegalArgumentException();
 		}
-		return false;
 	}
 	
 	/**
