@@ -457,7 +457,7 @@ public class RegistrationManagerTest {
 		try {
 			manager.removeFacultyFromCourse(course, faculty);
 		} catch (IllegalArgumentException e) {
-			assertEquals(faculty.getSchedule().getNumScheduledCourses(),0);
+			assertEquals(faculty.getSchedule().getNumScheduledCourses(), 0);
 		}
 		
 		
