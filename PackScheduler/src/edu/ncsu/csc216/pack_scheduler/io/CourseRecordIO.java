@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
-import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+//import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+//import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 
 
 /**
@@ -75,7 +75,7 @@ public class CourseRecordIO {
 			int enrollmentCap = scan.nextInt();
 			String meetingDays = scan.next();
 			if (!scan.hasNext() && meetingDays.equals("A")) {
-				course = new Course(name, title, section, credits, null, enrollmentCap, meetingDays);
+				course = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
 			} else {
 				boolean hasA = false;
 				for (int i = 0; i < meetingDays.length(); i++) {
@@ -86,17 +86,17 @@ public class CourseRecordIO {
 				if (!hasA) {
 					int startTime = scan.nextInt();
 					int endTime = scan.nextInt();
-					course = new Course(name, title, section, credits, null, enrollmentCap, meetingDays, startTime, endTime);
+					course = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
 				} else {
 					scan.close();
 					throw new IllegalArgumentException();				
 				}
 			}	
-			Faculty faculty = RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId);
-			if (faculty != null) {
-				course.setInstructorId(instructorId);
-				faculty.getSchedule().addCourseToSchedule(course);
-			}
+		//	Faculty faculty = RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId);
+		//	if (faculty != null) {
+		//		course.setInstructorId(instructorId);
+		//		faculty.getSchedule().addCourseToSchedule(course);
+		//	}
 			scan.close();
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException();
