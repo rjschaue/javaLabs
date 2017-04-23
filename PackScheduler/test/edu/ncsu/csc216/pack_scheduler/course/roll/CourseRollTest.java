@@ -210,4 +210,27 @@ public class CourseRollTest {
 		assertTrue(roll.getOpenSeats() == 1);
 		assertTrue(roll.canEnroll(s11));
 	}
+	
+	/**
+	 * Tests getCourseRoll method
+	 */
+	public void testGetCourseRoll() {
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
+		
+		CourseRoll roll = c.getCourseRoll();
+		roll.enroll(s1);
+		assertTrue(roll.getOpenSeats() == 9);
+		assertFalse(roll.canEnroll(s1));
+		
+		//Get string array and compare
+		String[][] newRoll = new String[1][3];
+		newRoll[0][0] = FIRST_NAME;
+		newRoll[0][1] = LAST_NAME;
+		newRoll[0][2] = ID;
+		String[][] getCourseRoll = roll.getCourseRoll();
+		assertEquals(getCourseRoll[0][0], newRoll[0][0]);
+		assertEquals(getCourseRoll[0][1], newRoll[0][1]);
+		assertEquals(getCourseRoll[0][2], newRoll[0][2]);
+	}
 }

@@ -215,20 +215,24 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadStudentList) {
-			String fileName = getFileName(true);
 			try {
+				String fileName = getFileName(true);
 				studentDirectory.loadStudentsFromFile(fileName);
 				studentDirectoryTableModel.updateData();
 				scrollStudentDirectory.revalidate();
 				scrollStudentDirectory.repaint();
 				studentDirectoryTableModel.fireTableDataChanged();
+			} catch (IllegalStateException ise) {
+				//Let the method complete and repaint the GUI
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveStudentList) {
-			String fileName = getFileName(false);
 			try {
+				String fileName = getFileName(false);
 				studentDirectory.saveStudentDirectory(fileName);
+			} catch (IllegalStateException ise) {
+				//Let the method complete and repaint the GUI
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}

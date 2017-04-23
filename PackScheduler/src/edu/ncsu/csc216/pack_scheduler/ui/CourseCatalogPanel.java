@@ -345,20 +345,24 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadCourseCatalog) {
-			String fileName = getFileName(true);
 			try {
+				String fileName = getFileName(true);
 				catalog.loadCoursesFromFile(fileName);
 				courseCatalogTableModel.updateData();
 				scrollCourseCatalog.revalidate();
 				scrollCourseCatalog.repaint();
 				courseCatalogTableModel.fireTableDataChanged();
+			} catch (IllegalStateException ise) {
+				//Let the method complete and repaint the GUI
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveCourseCatalog) {
-			String fileName = getFileName(false);
 			try {
+				String fileName = getFileName(false);
 				catalog.saveCourseCatalog(fileName);
+			} catch (IllegalStateException ise) {
+				//Let the method complete and repaint the GUI
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}

@@ -220,20 +220,24 @@ public class FacultyDirectoryPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadFacultyList) {
-			String fileName = getFileName(true);
 			try {
+				String fileName = getFileName(true);
 				facultyDirectory.loadFacultyFromFile(fileName);
 				facultyDirectoryTableModel.updateData();
 				scrollFacultyDirectory.revalidate();
 				scrollFacultyDirectory.repaint();
 				facultyDirectoryTableModel.fireTableDataChanged();
+			} catch (IllegalStateException ise) {
+				//Let the method complete and repaint the GUI
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveFacultyList) {
-			String fileName = getFileName(false);
 			try {
+				String fileName = getFileName(false);
 				facultyDirectory.saveFacultyDirectory(fileName);
+			} catch (IllegalStateException ise) {
+				//Let the method complete and repaint the GUI
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}

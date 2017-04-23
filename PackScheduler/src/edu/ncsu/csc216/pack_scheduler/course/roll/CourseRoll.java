@@ -160,4 +160,18 @@ public class CourseRoll {
 	public int getNumberOnWaitlist() {
 		return waitlist.size();
 	}
+	
+	/**
+	 * Returns the course roll as a 2d array
+	 * @return the course roll as a 2d array
+	 */
+	public String[][] getCourseRoll() {
+		String[][] newRoll = new String[roll.size()][3];
+		for (int i = 0; i < roll.size(); i++) {
+			newRoll[i][0] = roll.get(i).getFirstName();
+			newRoll[i][1] = roll.get(i).getLastName();
+			newRoll[i][2] = roll.get(i).getId();
+		}
+		return newRoll;
+	}
 }
