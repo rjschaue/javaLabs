@@ -214,6 +214,7 @@ public class CourseRollTest {
 	/**
 	 * Tests getCourseRoll method
 	 */
+	@Test
 	public void testGetCourseRoll() {
 		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
 		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS);
