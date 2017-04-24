@@ -250,9 +250,8 @@ public class FacultySchedulePanel extends JPanel {
 		if (RegistrationManager.getInstance().getCurrentUser() instanceof Faculty) {
 			Faculty faculty = (Faculty) RegistrationManager.getInstance().getCurrentUser();
 			schedule = faculty.getSchedule();
-		}
 			scheduleTableModel.updateData();
-			rollTableModel.updateData(null);
+		}
 	}
 	
 	/**
@@ -276,7 +275,7 @@ public class FacultySchedulePanel extends JPanel {
 			lblTitle.setText(course.getTitle());
 			lblInstructor.setText(course.getInstructorId());
 			lblCredits.setText("" + course.getCredits());
-			lblMeeting.setText(course.getMeetingDays());
+			lblMeeting.setText(course.getMeetingString());
 			lblEnrollmentCap.setText("" + course.getCourseRoll().getEnrollmentCap());
 			lblOpenSeats.setText("" + course.getCourseRoll().getOpenSeats());
 			lblWaitlist.setText("" + course.getCourseRoll().getNumberOnWaitlist());
